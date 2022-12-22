@@ -1,5 +1,5 @@
 # ER-diagram-generator
-Generate Entity Relationship Diagrams by giving instructions as a simple DDL script to the application.
+Generate Entity Relationship Diagrams by giving the application instructions as a simple DDL script.
 
 This project is going to be a cross-platform desktop application made with electron framework. A possible web-based version might be developed at a later time.
 
