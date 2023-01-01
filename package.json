@@ -1,0 +1,25 @@
+{
+  "name": "er-diagram-generator",
+  "version": "0.0.1",
+  "description": "Generate Entity Relationship Diagrams by giving the application instructions as a simple DDL script.",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "npm run build && electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hollowdll/ER-diagram-generator.git"
+  },
+  "author": "hollowdll",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hollowdll/ER-diagram-generator/issues"
+  },
+  "homepage": "https://github.com/hollowdll/ER-diagram-generator#readme",
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "typescript": "^4.9.4"
+  }
+}
