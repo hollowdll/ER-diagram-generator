@@ -1,0 +1,34 @@
+body {
+    color: white;
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+main {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    background-color: rgb(35, 35, 35);
+}
+
+/* Dark and Light mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: rgb(50,50,50);
+        color: white;
+    }
+    main {
+        background-color: rgb(35, 35, 35);
+    }
+  }
+  
+@media (prefers-color-scheme: light) {
+    body {
+        background: rgb(220,220,220);
+        color: black;
+    }
+    main {
+        background-color: rgb(200,200,200);
+    }
+  }

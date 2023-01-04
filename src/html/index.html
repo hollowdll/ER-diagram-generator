@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>ER diagram generator prototype</title>
 
+    <link rel="stylesheet" href="../css/index.css";
+
     <!-- You can also require other files to run in this process -->
     <script defer src="../../dist/renderer.js"></script>
-  </head>
-  <body>
-    <h1>ER diagram generator prototype</h1>
-    <p>This is a prototype.</p>
-  </body>
+</head>
+
+<body>
+    <button id="toggle-dark-mode">Toggle Dark Mode</button>
+    <button id="reset-to-system">Reset to System Theme</button>
+
+    <main>
+        <h1>ER diagram generator prototype</h1>
+        <p>This is a prototype.</p>
+    </main>
+
+</body>
 </html>
