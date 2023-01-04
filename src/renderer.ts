@@ -7,10 +7,10 @@
 
 // Dark and light mode toggle
 document.getElementById('toggle-dark-mode')?.addEventListener('click', async () => {
-    //const isDarkMode = await window.darkMode.toggle();
+    const isDarkMode = await window.darkMode.toggle();
 });
   
 document.getElementById('reset-to-system')?.addEventListener('click', async () => {
-    //await window.darkMode.system();
+    await window.darkMode.system();
 });
 
