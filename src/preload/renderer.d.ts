@@ -4,6 +4,8 @@
 export interface DarkMode {
     toggle: () => Promise<void>,
     system: () => Promise<void>,
+    toggleDark: () => Promise<void>,
+    toggleLight: () => Promise<void>,
 }
   
 declare global {

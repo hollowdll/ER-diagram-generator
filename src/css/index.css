@@ -1,3 +1,25 @@
+nav {
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav > div {
+    margin: 10px;
+}
+
+nav > div > label {
+    margin-right: 5px;
+}
+
+select {
+    outline: none;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
 main {
     width: 50%;
     margin-left: auto;

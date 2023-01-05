@@ -1,3 +1,6 @@
+// App main process
+// Handle app backend here
+
 import {app, BrowserWindow, ipcMain, nativeTheme} from "electron";
 import path from "path";
 
@@ -50,6 +53,7 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
   win.loadFile(path.join(process.cwd(), "src/html/debug.html"));
 }
 
+/* Without message
 ipcMain.handle('dark-mode:toggle', () => {
   if (nativeTheme.shouldUseDarkColors) {
     nativeTheme.themeSource = 'light';
@@ -57,6 +61,15 @@ ipcMain.handle('dark-mode:toggle', () => {
     nativeTheme.themeSource = 'dark';
   }
   return nativeTheme.shouldUseDarkColors;
+});
+*/
+
+ipcMain.handle('dark-mode:toggle', (event, theme) => {
+  if (theme === "light") {
+    nativeTheme.themeSource = "light";
+  } else if (theme === "dark") {
+    nativeTheme.themeSource = "dark";
+  }
 });
 
 ipcMain.handle('dark-mode:system', () => {

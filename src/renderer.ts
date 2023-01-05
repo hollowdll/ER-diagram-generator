@@ -5,12 +5,40 @@
 // Use preload.js to selectively enable features
 // needed in the renderer process.
 
+
+
 // Dark and light mode toggle
-document.getElementById('toggle-dark-mode')?.addEventListener('click', async () => {
-    const isDarkMode = await window.darkMode.toggle();
-});
-  
-document.getElementById('reset-to-system')?.addEventListener('click', async () => {
+const toggleDarkMode = async () => {
+    await window.darkMode.toggleDark();
+    console.log("Toggle dark mode");
+}
+
+const toggleLightMode = async () => {
+    await window.darkMode.toggleLight();
+    console.log("Toggle light mode");
+}
+
+const resetToSystemTheme = async () => {
     await window.darkMode.system();
+    console.log("Reset to system theme");
+}
+
+// Debug tool
+document.getElementById('toggle-dark-mode')?.
+    addEventListener('click', toggleDarkMode); 
+document.getElementById('reset-to-system')?.
+    addEventListener('click', resetToSystemTheme);
+
+// App
+document.getElementById("theme-color")?.addEventListener("change", () => {
+    const themeColorSelector = document.getElementById("theme-color") as HTMLSelectElement;
+
+    if (themeColorSelector?.value === "system") {
+        resetToSystemTheme();
+    } else if (themeColorSelector?.value === "dark") {
+        toggleDarkMode();
+    } else if (themeColorSelector?.value === "light") {
+        toggleLightMode();
+    }
 });
 

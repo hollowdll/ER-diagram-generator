@@ -1,9 +1,16 @@
 /* Dark and Light mode */
+
+/* Dark */
 @media (prefers-color-scheme: dark) {
     body {
         background: rgb(50,50,50);
         color: white;
     }
+
+    nav {
+        background-color: rgb(30,30,30);
+    }
+
     main {
         background-color: rgb(35, 35, 35);
     }
@@ -12,12 +19,18 @@
         background-color: rgb(50,50,50);
     }
 }
-  
+
+/* Light */
 @media (prefers-color-scheme: light) {
     body {
         background: rgb(220,220,220);
         color: black;
     }
+
+    nav {
+        background-color: rgb(180,180,180);
+    }
+
     main {
         background-color: rgb(200,200,200);
     }
@@ -25,4 +38,6 @@
     .color-body {
         background-color: rgb(220,220,220);
     }
+
+
 }
