@@ -29,9 +29,13 @@ document.getElementById('toggle-dark-mode')?.
 document.getElementById('reset-to-system')?.
     addEventListener('click', resetToSystemTheme);
 
+
+
 // App
-document.getElementById("theme-color")?.addEventListener("change", () => {
-    const themeColorSelector = document.getElementById("theme-color") as HTMLSelectElement;
+
+// Theme color selector
+document.getElementById("theme-color-selector")?.addEventListener("change", () => {
+    const themeColorSelector = document.getElementById("theme-color-selector") as HTMLSelectElement;
 
     if (themeColorSelector?.value === "system") {
         resetToSystemTheme();
@@ -41,4 +45,26 @@ document.getElementById("theme-color")?.addEventListener("change", () => {
         toggleLightMode();
     }
 });
+
+// Generate from JSON
+
+
+// Show render area
+document.getElementById("show-render-area-button")?.addEventListener("click", () => {
+    const button = document.getElementById("show-render-area-button") as HTMLButtonElement;
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+
+    if (button?.value === "false") {
+        renderArea.style["border"] = "1px solid green";
+        button.innerText = "Hide";
+        button.value = "true";
+    } else if (button?.value === "true") {
+        renderArea.style["border"] = "none";
+        button.innerText = "Show";
+        button.value = "false";
+    }
+});
+
+// Generate new test object
+
 

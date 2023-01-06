@@ -10,7 +10,7 @@ nav {
 }
 
 nav > div {
-    margin: 10px;
+    margin: 15px;
 }
 
 nav > div > label {
@@ -27,5 +27,15 @@ main {
     width: 100%;
     text-align: center;
     overflow: auto;
+}
+
+main > .render-area {
+    border: none;
+    width: 1500px;
+    height: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
 }
 

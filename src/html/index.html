@@ -17,19 +17,32 @@
 
 <body>
 
-    <nav class="flex-container">
-        <div>
-            <label for="theme-color">Theme Color: </label>
-            <select id="theme-color">
+    <nav class="top-bar">
+        <div class="theme-color">
+            <label for="theme-color-selector">Theme Color: </label>
+            <select id="theme-color-selector">
                 <option value="system">System</option>
                 <option value="dark">Dark</option>
                 <option value="light">Light</option>
             </select>
         </div>
+        <div class="open-json-file">
+            <label for="open-json-file-button">Generate From JSON: </label>
+            <button id="open-json-file-button">Open File</button>
+        </div>
+        <div class="show-render-area">
+            <label for="show-render-area-button">Show Render Area: </label>
+            <button id="show-render-area-button" value="false">Show</button>
+        </div>
+        <div class="generate-test-object">
+            <label for="generate-test-object-button">Generate New Test Object: </label>
+            <button id="generate-test-object-button">Generate</button>
+        </div>
     </nav>
 
     <main class="layout">
-        <h2>ER diagram generator prototype</h2>
+        <h2>Entity Relationship Diagram Generator Prototype</h2>
+        <div class="render-area" id="render-area"></div>
     </main>
 
 </body>
