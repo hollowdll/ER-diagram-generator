@@ -8,6 +8,7 @@
 
 
 // Dark and light mode toggle
+
 const toggleDarkMode = async () => {
     await window.darkMode.toggleDark();
     console.log("Toggle dark mode");
@@ -22,6 +23,21 @@ const resetToSystemTheme = async () => {
     await window.darkMode.system();
     console.log("Reset to system theme");
 }
+
+// Generate test object that will be rendered
+const generateTestObject = () => {
+    // Make diagram objects with HTML table elements
+    // 
+
+    // For testing
+    const holder = document.createElement("div");
+    holder.className = "diagram-object";
+
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    renderArea.appendChild(holder);
+}
+
+
 
 // Debug tool
 document.getElementById('toggle-dark-mode')?.
@@ -47,7 +63,9 @@ document.getElementById("theme-color-selector")?.addEventListener("change", () =
 });
 
 // Generate from JSON
+document.getElementById("open-json-file-button")?.addEventListener("click", () => {
 
+});
 
 // Show render area
 document.getElementById("show-render-area-button")?.addEventListener("click", () => {
@@ -66,5 +84,7 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
 });
 
 // Generate new test object
-
+document.getElementById("generate-test-object-button")?.addEventListener("click", () => {
+    generateTestObject();
+});
 
