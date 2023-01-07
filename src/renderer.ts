@@ -49,8 +49,8 @@ const generateDiagramObjectFieldRow =
     const row = `
         <tr class="object-field-row">
             <td class="object-field-key">${keyValue}</td>
-            <td class="object-field-name">${name}</td>
-            <td class="object-field-datatype">${dataType}</td>
+            <td class="object-field-name"><span>${name}</span></td>
+            <td class="object-field-datatype"><span>${dataType}</span></td>
             <td class="object-field-required">${required}</td>
         </tr>
     `;
@@ -99,9 +99,11 @@ const generateTestObject = () => {
     holder.className = "diagram-object";
 
     const nameRow = generateDiagramObjectNameRow("Person");
-    const fieldRow = generateDiagramObjectFieldRow(true, "person_id", "text", "NN");
+    const fieldRow1 = generateDiagramObjectFieldRow(true, "person_id", "serial", "NN");
+    const fieldRow2 = generateDiagramObjectFieldRow(false, "name", "text", "NN");
+    const fieldRow3 = generateDiagramObjectFieldRow(false, "age", "integer", "NN");
 
-    holder.innerHTML += nameRow + fieldRow;
+    holder.innerHTML += nameRow + fieldRow1 + fieldRow2 + fieldRow3;
 
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
     renderArea.appendChild(holder);
