@@ -109,6 +109,8 @@ const generateTestObject = () => {
     renderArea.appendChild(holder);
 }
 
+// 
+
 
 
 // Debug tool
@@ -158,5 +160,22 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
 // Generate new test object
 document.getElementById("generate-test-object-button")?.addEventListener("click", () => {
     generateTestObject();
+});
+
+// Reset current diagram
+document.getElementById("reset-diagram-button")?.addEventListener("click", () => {
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    let elementCount = 0;
+
+    // Blazingly fast (check if firstChild exists, not lastChild)
+    // Remove all HTML elements and nodes from render area
+    while (renderArea.firstChild) {
+        renderArea.removeChild(renderArea.lastChild as Node);
+        elementCount++;
+    }
+
+    if (elementCount > 0) {
+        console.log(`Removed ${elementCount} diagram ${elementCount === 1 ? "table" : "tables"}.`);
+    }
 });
 
