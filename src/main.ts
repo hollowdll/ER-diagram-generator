@@ -55,35 +55,43 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
   win.loadFile(path.join(process.cwd(), "src/html/debug.html"));
 }
 
-/* Without message
-ipcMain.handle('dark-mode:toggle', () => {
-  if (nativeTheme.shouldUseDarkColors) {
-    nativeTheme.themeSource = 'light';
-  } else {
-    nativeTheme.themeSource = 'dark';
-  }
-  return nativeTheme.shouldUseDarkColors;
-});
-*/
+// Initialize Inter process communication channels
+// in main process
+const initializeIpcChannels = () => {
+  /* Without message
+  ipcMain.handle('dark-mode:toggle', () => {
+    if (nativeTheme.shouldUseDarkColors) {
+      nativeTheme.themeSource = 'light';
+    } else {
+      nativeTheme.themeSource = 'dark';
+    }
+    return nativeTheme.shouldUseDarkColors;
+  });
+  */
 
-ipcMain.handle('dark-mode:toggle', (event, theme) => {
-  if (theme === "light") {
-    nativeTheme.themeSource = "light";
-  } else if (theme === "dark") {
-    nativeTheme.themeSource = "dark";
-  }
-});
+  ipcMain.handle('dark-mode:toggle', (event, theme) => {
+    if (theme === "light") {
+      nativeTheme.themeSource = "light";
+    } else if (theme === "dark") {
+      nativeTheme.themeSource = "dark";
+    }
+  });
 
-ipcMain.handle('dark-mode:system', () => {
-  nativeTheme.themeSource = 'system';
-});
+  ipcMain.handle('dark-mode:system', () => {
+    nativeTheme.themeSource = 'system';
+  });
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  const mainWindow = createMainWindow();
-  createDebugWindow(mainWindow);
+  // Call before creating app windows
+  initializeIpcChannels();
+
+  createMainWindow();
+  // const mainWindow = createMainWindow();
+  // createDebugWindow(mainWindow);
 
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the

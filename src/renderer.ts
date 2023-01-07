@@ -24,14 +24,84 @@ const resetToSystemTheme = async () => {
     console.log("Reset to system theme");
 }
 
+
+
+// Generate diagram object name row
+const generateDiagramObjectNameRow = (name: string): string => {
+    const row = `
+        <tr class="object-name-row">
+            <th class="object-name" colspan="4">${name}</th>
+        </tr>
+    `;
+
+    // Test output format
+    console.log(row);
+
+    return row;
+}
+
+// Generate diagram object field row
+const generateDiagramObjectFieldRow =
+    (isPrimaryKey: boolean, name: string, dataType: string, required: string): string => {
+    // Check if is primary key
+    const keyValue = isPrimaryKey === true ? "PK" : "";
+    
+    const row = `
+        <tr class="object-field-row">
+            <td class="object-field-key">${keyValue}</td>
+            <td class="object-field-name">${name}</td>
+            <td class="object-field-datatype">${dataType}</td>
+            <td class="object-field-required">${required}</td>
+        </tr>
+    `;
+
+    // Test output format
+    console.log(row);
+
+    return row;
+}
+
 // Generate test object that will be rendered
 const generateTestObject = () => {
     // Make diagram objects with HTML table elements
-    // 
 
-    // For testing
-    const holder = document.createElement("div");
+    /*  Disabled - Don't touch - might be used later
+
+    // Table holder
+    const holder = document.createElement("table");
     holder.className = "diagram-object";
+
+    // Table name row
+    const nameRow = document.createElement("tr");
+    nameRow.className = "object-name-row";
+    holder.appendChild(nameRow);
+
+    // Table name data
+    const nameData = document.createElement("th");
+    nameData.className = "object-name";
+    nameData.innerText = "Person";
+    nameRow.appendChild(nameData);
+
+    // Field row
+    const fieldRow = document.createElement("tr");
+    fieldRow.className = "object-field-row";
+    holder.appendChild(fieldRow);
+
+    // Field key
+    const fieldKey = document.createElement("td");
+    fieldKey.className = "object-field-key";
+    fieldKey.innerText = "PK";
+    fieldRow.appendChild(fieldKey);
+    */
+
+    // Table holder
+    const holder = document.createElement("table");
+    holder.className = "diagram-object";
+
+    const nameRow = generateDiagramObjectNameRow("Person");
+    const fieldRow = generateDiagramObjectFieldRow(true, "person_id", "text", "NN");
+
+    holder.innerHTML += nameRow + fieldRow;
 
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
     renderArea.appendChild(holder);
