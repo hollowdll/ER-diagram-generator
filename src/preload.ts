@@ -10,3 +10,9 @@ contextBridge.exposeInMainWorld('darkMode', {
   toggleDark: () => ipcRenderer.invoke("dark-mode:toggle", "dark"),
   toggleLight: () => ipcRenderer.invoke("dark-mode:toggle", "light")
 })
+
+// Dialog for opening and saving files
+contextBridge.exposeInMainWorld("systemDialog", {
+  openJSONFile: () => ipcRenderer.invoke("system-dialog:open-file", "JSON"),
+
+})

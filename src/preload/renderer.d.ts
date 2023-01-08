@@ -7,9 +7,14 @@ export interface DarkMode {
     toggleDark: () => Promise<void>,
     toggleLight: () => Promise<void>,
 }
+
+export interface SystemDialog {
+    openJSONFile: () => Promise<void>,
+}
   
 declare global {
     interface Window {
         darkMode: DarkMode,
+        systemDialog: SystemDialog,
     }
 }

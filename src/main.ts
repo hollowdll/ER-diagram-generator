@@ -1,8 +1,9 @@
 // App main process
 // Handle app backend here
 
-import {app, BrowserWindow, ipcMain, nativeTheme} from "electron";
+import {app, BrowserWindow, ipcMain, nativeTheme, dialog} from "electron";
 import path from "path";
+// import * as fs from "fs/promises";
 
 const createMainWindow = (): BrowserWindow => {
   const win = new BrowserWindow({
@@ -66,20 +67,44 @@ const initializeIpcChannels = () => {
       nativeTheme.themeSource = 'dark';
     }
     return nativeTheme.shouldUseDarkColors;
-  });
+  })
   */
 
-  ipcMain.handle('dark-mode:toggle', (event, theme) => {
+  // Toggle between light and dark mode
+  ipcMain.handle('dark-mode:toggle', (event, theme: string) => {
     if (theme === "light") {
       nativeTheme.themeSource = "light";
     } else if (theme === "dark") {
       nativeTheme.themeSource = "dark";
     }
-  });
+  })
 
+  // Reset to system theme
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system';
-  });
+  })
+
+  // Open system dialog and open a JSON file
+  ipcMain.handle("system-dialog:open-file", async (event, fileType: string): Promise<string[]> => {
+    let openedFilePaths: string[] = [];
+
+    await dialog.showOpenDialog({
+      title: "Open JSON File...",
+      defaultPath: process.cwd(),
+      filters: [{
+        name: "JSON File", extensions: ["json"]
+      }],
+      properties: ["openFile"]
+    }).then(result => {
+      console.log(`Canceled: ${result.canceled}`);
+      console.log(`Opened File Paths: ${result.filePaths}`);
+      openedFilePaths = [...result.filePaths];
+    }).catch(err => {
+      console.log(err);
+    })
+
+    return openedFilePaths;
+  })
 }
 
 // This method will be called when Electron has finished

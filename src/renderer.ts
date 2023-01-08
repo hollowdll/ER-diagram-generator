@@ -109,7 +109,11 @@ const generateTestObject = () => {
     renderArea.appendChild(holder);
 }
 
-// 
+// Tell main process to open system dialog to open a JSON file
+const openJSONFile = async () => {
+    const response = await window.systemDialog.openJSONFile();
+    console.log(response);
+}
 
 
 
@@ -138,7 +142,7 @@ document.getElementById("theme-color-selector")?.addEventListener("change", () =
 
 // Generate from JSON
 document.getElementById("open-json-file-button")?.addEventListener("click", () => {
-
+    openJSONFile();
 });
 
 // Show render area
