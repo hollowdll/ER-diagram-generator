@@ -127,11 +127,11 @@ document.getElementById('reset-to-system')?.
 document.getElementById("theme-color-selector")?.addEventListener("change", () => {
     const themeColorSelector = document.getElementById("theme-color-selector") as HTMLSelectElement;
 
-    if (themeColorSelector?.value === "system") {
+    if (themeColorSelector.value === "system") {
         resetToSystemTheme();
-    } else if (themeColorSelector?.value === "dark") {
+    } else if (themeColorSelector.value === "dark") {
         toggleDarkMode();
-    } else if (themeColorSelector?.value === "light") {
+    } else if (themeColorSelector.value === "light") {
         toggleLightMode();
     }
 });
@@ -146,11 +146,11 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
     const button = document.getElementById("show-render-area-button") as HTMLButtonElement;
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
 
-    if (button?.value === "false") {
+    if (button.value === "false") {
         renderArea.style["border"] = "1px solid green";
         button.innerText = "Hide";
         button.value = "true";
-    } else if (button?.value === "true") {
+    } else if (button.value === "true") {
         renderArea.style["border"] = "none";
         button.innerText = "Show";
         button.value = "false";

@@ -21,21 +21,21 @@ select {
     outline: none;
 }
 
-main {
-    margin-top: 40px;
-    height: 1000px;
-    width: 100%;
+.description-area {
+    margin-top: 60px;
     text-align: center;
-    overflow: auto;
 }
 
-main > .render-area {
+.render-area {
     border: none;
     width: 90%;
-    height: 800px;
-    display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 40px;
+    overflow: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 

@@ -3,7 +3,7 @@
 /* Dark */
 @media (prefers-color-scheme: dark) {
     body {
-        background: rgb(50,50,50);
+        background: rgb(35,35,35);
         color: white;
     }
 
@@ -16,7 +16,7 @@
     }
 
     .color-body {
-        background-color: rgb(50,50,50);
+        background-color: rgb(35,35,35);
     }
 }
 

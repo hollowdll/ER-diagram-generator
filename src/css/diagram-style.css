@@ -1,8 +1,13 @@
+
+
 .diagram-object {
     background-color: rgb(60,60,60);
     border-collapse: collapse;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    margin: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .diagram-object > th, td {
@@ -12,6 +17,10 @@
 
 .object-name-row {
     background-color: rgb(90, 90, 170);
+}
+
+.object-field-row > td {
+    padding-bottom: 2px;
 }
 
 .object-field-name {
