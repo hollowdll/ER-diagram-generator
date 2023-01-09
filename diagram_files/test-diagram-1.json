@@ -1,0 +1,63 @@
+{
+    "settings": {
+        "diagram-name": "Test Diagram 1",
+        "required-option-output": "NN",
+        "entity-generation-direction": "vertical"
+    },
+    "details": {
+        "PK": "Primary Key",
+        "FK": "Foreign Key",
+        "NN": "Not Null",
+        "serial": "Automatic integer starting from 1",
+        "text": "String of characters"
+    },
+    "customization": {
+        "theme": "dark"
+    },
+    "entities": {
+        "Person": {
+            "id": 1,
+            "person_id": {
+                "is_pk": true,
+                "data_type": "serial",
+                "required": true
+            },
+            "first_name": {
+                "is_pk": false,
+                "data_type": "text",
+                "required": true
+            },
+            "last_name": {
+                "is_pk": false,
+                "data_type": "text",
+                "required": true
+            },
+            "age": {
+                "is_pk": false,
+                "data_type": "integer",
+                "required": true
+            }
+        },
+        "Book": {
+            "id": 2,
+            "isbn": {
+                "is_pk": true,
+                "data_type": "text",
+                "required": true
+            },
+            "name": {
+                "is_pk": false,
+                "data_type": "text",
+                "required": true
+            },
+            "page_count": {
+                "is_pk": false,
+                "data_type": "integer",
+                "required": true
+            }
+        }
+    },
+    "relationships": {
+
+    }
+}
