@@ -1,8 +1,7 @@
 {
     "settings": {
         "diagram-name": "Test Diagram 1",
-        "required-option-output": "NN",
-        "entity-generation-direction": "vertical"
+        "required-option-output": "NN"
     },
     "details": {
         "PK": "Primary Key",
@@ -14,49 +13,62 @@
     "customization": {
         "theme": "dark"
     },
-    "entities": {
-        "Person": {
+    "entities": [
+        {
+            "name": "Person",
             "id": 1,
-            "person_id": {
-                "is_pk": true,
-                "data_type": "serial",
-                "required": true
-            },
-            "first_name": {
-                "is_pk": false,
-                "data_type": "text",
-                "required": true
-            },
-            "last_name": {
-                "is_pk": false,
-                "data_type": "text",
-                "required": true
-            },
-            "age": {
-                "is_pk": false,
-                "data_type": "integer",
-                "required": true
-            }
+            "fields": [
+                {
+                    "name": "person_id",
+                    "is_pk": true,
+                    "data_type": "serial",
+                    "required": true
+                },
+                {
+                    "name": "first_name",
+                    "is_pk": false,
+                    "data_type": "text",
+                    "required": true
+                },
+                {
+                    "name": "last_name",
+                    "is_pk": false,
+                    "data_type": "text",
+                    "required": true
+                },
+                {
+                    "name": "age",
+                    "is_pk": false,
+                    "data_type": "integer",
+                    "required": true
+                }
+            ]
         },
-        "Book": {
+        {
+            "name": "Book",
             "id": 2,
-            "isbn": {
-                "is_pk": true,
-                "data_type": "text",
-                "required": true
-            },
-            "name": {
-                "is_pk": false,
-                "data_type": "text",
-                "required": true
-            },
-            "page_count": {
-                "is_pk": false,
-                "data_type": "integer",
-                "required": true
-            }
+            "fields": [
+                {
+                    "name": "isbn",
+                    "is_pk": true,
+                    "data_type": "text",
+                    "required": true
+                },
+                {
+                    "name": "book_name",
+                    "is_pk": false,
+                    "data_type": "text",
+                    "required": true
+                },
+                {
+                    "name": "page_count",
+                    "is_pk": false,
+                    "data_type": "integer",
+                    "required": true
+                }
+            ]
         }
-    },
+    ],
     "relationships": {
 
     }
