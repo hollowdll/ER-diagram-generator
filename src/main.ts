@@ -3,16 +3,19 @@
 
 import {app, BrowserWindow, ipcMain, nativeTheme, dialog} from "electron";
 import path from "path";
-// import * as fs from "fs/promises";
+import * as fs from "fs/promises";
 
 const createMainWindow = (): BrowserWindow => {
   const win = new BrowserWindow({
+    title: "ER diagram generator",
+    darkTheme: true,
     width: 800,
     height: 600,
     minWidth: 500,
     minHeight: 400,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
+      sandbox: true
     },
     show: false
   });
@@ -56,20 +59,27 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
   win.loadFile(path.join(process.cwd(), "src/html/debug.html"));
 }
 
+
+
+// Read contents of JSON file
+const readJSONFile = (filePaths: string[]) => {
+  // Read only the first file
+  const firstFile = filePaths[0];
+
+  // Read the contents
+  fs.readFile(firstFile, {
+    encoding: "utf8"
+  }).then(contents => {
+    const data = JSON.parse(contents);
+    console.log(data);
+  }).catch(err => {
+    console.log(err);
+  })
+}
+
 // Initialize Inter process communication channels
 // in main process
 const initializeIpcChannels = () => {
-  /* Without message
-  ipcMain.handle('dark-mode:toggle', () => {
-    if (nativeTheme.shouldUseDarkColors) {
-      nativeTheme.themeSource = 'light';
-    } else {
-      nativeTheme.themeSource = 'dark';
-    }
-    return nativeTheme.shouldUseDarkColors;
-  })
-  */
-
   // Toggle between light and dark mode
   ipcMain.handle('dark-mode:toggle', (event, theme: string) => {
     if (theme === "light") {
@@ -87,21 +97,44 @@ const initializeIpcChannels = () => {
   // Open system dialog and open a JSON file
   ipcMain.handle("system-dialog:open-file", async (event, fileType: string): Promise<string[]> => {
     let openedFilePaths: string[] = [];
+    const focusedWindow = BrowserWindow.getFocusedWindow();
 
-    await dialog.showOpenDialog({
+    const options: Electron.OpenDialogOptions = {
       title: "Open JSON File...",
       defaultPath: process.cwd(),
       filters: [{
         name: "JSON File", extensions: ["json"]
       }],
       properties: ["openFile"]
-    }).then(result => {
-      console.log(`Canceled: ${result.canceled}`);
-      console.log(`Opened File Paths: ${result.filePaths}`);
-      openedFilePaths = [...result.filePaths];
-    }).catch(err => {
-      console.log(err);
-    })
+    };
+
+    if (focusedWindow !== null) {
+      // Dialog becomes a modal window
+      await dialog.showOpenDialog(focusedWindow, options)
+        .then(result => {
+          console.log(`Canceled: ${result.canceled}`);
+          console.log(`Opened File Paths: ${result.filePaths}`);
+          openedFilePaths = [...result.filePaths];
+
+          if (!result.canceled && result.filePaths.length > 0) {
+            readJSONFile(result.filePaths);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    } else {
+      // Not modal, just child window
+      await dialog.showOpenDialog(options)
+        .then(result => {
+          console.log(`Canceled: ${result.canceled}`);
+          console.log(`Opened File Paths: ${result.filePaths}`);
+          openedFilePaths = [...result.filePaths];
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
 
     return openedFilePaths;
   })
