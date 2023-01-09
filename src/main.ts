@@ -62,20 +62,33 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
 
 
 // Read contents of JSON file
-const readJSONFile = (filePaths: string[]) => {
+const readJSONFile = async (filePaths: string[]): Promise<any> => {
   // Read only the first file
   const firstFile = filePaths[0];
+  let data: any;
 
   // Read the contents
-  fs.readFile(firstFile, {
+  await fs.readFile(firstFile, {
     encoding: "utf8"
   }).then(contents => {
-    const data = JSON.parse(contents);
+    // convert from JSON string into object
+    try {
+      data = JSON.parse(contents);
+    } catch(err) {
+      console.log(err);
+      data = "Error: File is not valid JSON";
+      dialog.showErrorBox("Error reading file!", "File is not valid JSON.");
+    }
     console.log(data);
   }).catch(err => {
     console.log(err);
+    data = "Error reading file!";
+    dialog.showErrorBox("Error reading file!", "Cannot read this file.");
   })
+
+  return data;
 }
+
 
 // Initialize Inter process communication channels
 // in main process
@@ -95,9 +108,9 @@ const initializeIpcChannels = () => {
   })
 
   // Open system dialog and open a JSON file
-  ipcMain.handle("system-dialog:open-file", async (event, fileType: string): Promise<string[]> => {
-    let openedFilePaths: string[] = [];
+  ipcMain.handle("system-dialog:open-file", async (event, fileType: string): Promise<any> => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
+    let data: any;
 
     const options: Electron.OpenDialogOptions = {
       title: "Open JSON File...",
@@ -114,29 +127,25 @@ const initializeIpcChannels = () => {
         .then(result => {
           console.log(`Canceled: ${result.canceled}`);
           console.log(`Opened File Paths: ${result.filePaths}`);
-          openedFilePaths = [...result.filePaths];
 
           if (!result.canceled && result.filePaths.length > 0) {
-            readJSONFile(result.filePaths);
+            data = readJSONFile(result.filePaths);
           }
+
         })
         .catch(err => {
           console.log(err);
+          data = "Error opening dialog!";
+          dialog.showErrorBox("Error opening dialog!", "Cannot open dialog.")
         })
     } else {
-      // Not modal, just child window
-      await dialog.showOpenDialog(options)
-        .then(result => {
-          console.log(`Canceled: ${result.canceled}`);
-          console.log(`Opened File Paths: ${result.filePaths}`);
-          openedFilePaths = [...result.filePaths];
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      // No focused window found
+      console.log("Error opening dialog: No focused window found!");
+      data = "Error opening dialog: No focused window found!";
+      dialog.showErrorBox("Error opening dialog!", "No focused window found.")
     }
 
-    return openedFilePaths;
+    return data;
   })
 }
 

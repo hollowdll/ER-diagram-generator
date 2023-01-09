@@ -65,35 +65,6 @@ const generateDiagramObjectFieldRow =
 const generateTestObject = () => {
     // Make diagram objects with HTML table elements
 
-    /*  Disabled - Don't touch - might be used later
-
-    // Table holder
-    const holder = document.createElement("table");
-    holder.className = "diagram-object";
-
-    // Table name row
-    const nameRow = document.createElement("tr");
-    nameRow.className = "object-name-row";
-    holder.appendChild(nameRow);
-
-    // Table name data
-    const nameData = document.createElement("th");
-    nameData.className = "object-name";
-    nameData.innerText = "Person";
-    nameRow.appendChild(nameData);
-
-    // Field row
-    const fieldRow = document.createElement("tr");
-    fieldRow.className = "object-field-row";
-    holder.appendChild(fieldRow);
-
-    // Field key
-    const fieldKey = document.createElement("td");
-    fieldKey.className = "object-field-key";
-    fieldKey.innerText = "PK";
-    fieldRow.appendChild(fieldKey);
-    */
-
     // Table holder
     const holder = document.createElement("table");
     holder.className = "diagram-object";
@@ -113,6 +84,8 @@ const generateTestObject = () => {
 const openJSONFile = async () => {
     const response = await window.systemDialog.openJSONFile();
     console.log(response);
+
+    
 }
 
 
