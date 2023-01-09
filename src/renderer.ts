@@ -80,12 +80,23 @@ const generateTestObject = () => {
     renderArea.appendChild(holder);
 }
 
+
+// Generate diagram from object data
+const generateDiagramFromData = (data: any) => {
+    
+}   
+
+
 // Tell main process to open system dialog to open a JSON file
 const openJSONFile = async () => {
     const response = await window.systemDialog.openJSONFile();
     console.log(response);
 
-    
+    // Check if returned valid data response
+    if (response !== undefined && response !== null && typeof response !== "string") {
+        // Generate diagram from received data
+        generateDiagramFromData(response);
+    }
 }
 
 
