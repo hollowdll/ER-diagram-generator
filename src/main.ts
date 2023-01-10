@@ -73,30 +73,75 @@ const createDiagramData = (data: object) => {
       && "relationships" in data && typeof data.relationships === "object"
     ) 
     {
+      console.log("Data Root: OK");
       // settings
-      if (data.settings && "diagramName" in data.settings
+      if (data.settings && data.customization
+        && data.details && data.entities && data.relationships
+        && "diagramName" in data.settings
         && typeof data.settings.diagramName === "string"
         && "requiredOptionOutput" in data.settings
         && typeof data.settings.requiredOptionOutput === "string"
 
         // customization
-        && data.customization && "theme" in data.customization
+        && "theme" in data.customization
         && typeof data.customization.theme === "string"
-        
-        // details
-        
-
-        // entities
-
-        // relationships
-
       )
       {
+        console.log("Settings and customization: OK");
 
+        // details
+        for (const item of Object.values(data.details)) {
+          if (item && typeof item === "object"
+            && "detail" in item && typeof item.detail === "string"
+            && "description" in item && typeof item.description === "string"
+          )
+          {
+            console.log(item);
+          }
+          else return;
+        }
+
+        console.log("Details: OK");
+
+        // entities
+        for (const item of Object.values(data.entities)) {
+          if (item && typeof item === "object"
+            && "name" in item && typeof item.name === "string"
+            && "id" in item && typeof item.id === "number"
+            && "fields" in item && typeof item.fields === "object"
+            && item.fields
+          )
+          {
+            // Check for nested properties
+            for (const field of Object.values(item.fields)) {
+              if (field && typeof field === "object"
+                && "name" in field && typeof field.name === "string"
+                && "isPK" in field && typeof field.isPK === "boolean"
+                && "dataType" in field && typeof field.dataType === "string"
+                && "required" in field && typeof field.required === "boolean"
+              )
+              {
+                console.log(field);
+              }
+              else return
+            }
+
+            console.log(item);
+          }
+          else return;
+        }
+
+        console.log("Entities: OK");
+
+        // relationships
+        if (data.relationships) {
+          console.log("Relationships: OK");
+        }
       }
     }
   }
 
+  // Create diagram data based on checked valid data
   /*
   const diagramData: IDiagram = {
     settings: {
