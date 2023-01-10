@@ -4,7 +4,10 @@
 import {app, BrowserWindow, ipcMain, nativeTheme, dialog} from "electron";
 import path from "path";
 import * as fs from "fs/promises";
+import { IDiagram, IDiagramDetail, IDiagramEntity, IDiagramEntityField }
+from "./diagram-structure";
 
+// Main window of the app
 const createMainWindow = (): BrowserWindow => {
   const win = new BrowserWindow({
     title: "ER diagram generator",
@@ -59,13 +62,67 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
   win.loadFile(path.join(process.cwd(), "src/html/debug.html"));
 }
 
+// Create diagram data
+const createDiagramData = (data: object) => {
+  // Check if all values and types are valid in data
+  if (data && typeof data === "object") {
+    if ("settings" in data && typeof data.settings === "object"
+      && "customization" in data && typeof data.customization === "object"
+      && "details" in data && typeof data.details === "object"
+      && "entities" in data && typeof data.entities === "object"
+      && "relationships" in data && typeof data.relationships === "object"
+    ) 
+    {
+      // settings
+      if (data.settings && "diagramName" in data.settings
+        && typeof data.settings.diagramName === "string"
+        && "requiredOptionOutput" in data.settings
+        && typeof data.settings.requiredOptionOutput === "string"
 
+        // customization
+        && data.customization && "theme" in data.customization
+        && typeof data.customization.theme === "string"
+        
+        // details
+        
+
+        // entities
+
+        // relationships
+
+      )
+      {
+
+      }
+    }
+  }
+
+  /*
+  const diagramData: IDiagram = {
+    settings: {
+      diagramName: data.settings.diagramName,
+      requiredOptionOutput: data.settings.requiredOptionOutput
+    },
+    customization: {
+      theme: data.customization.theme
+    },
+    details: [
+
+    ],
+    entities: [
+
+    ],
+    relationships: {}
+  }
+  */
+}
 
 // Read contents of JSON file
-const readJSONFile = async (filePaths: string[]): Promise<any> => {
+const readJSONFile = async (filePaths: string[]): Promise<unknown> => {
   // Read only the first file
   const firstFile = filePaths[0];
-  let data: any;
+  
+  let data: unknown;
 
   // Read the contents
   await fs.readFile(firstFile, {
@@ -73,16 +130,16 @@ const readJSONFile = async (filePaths: string[]): Promise<any> => {
   }).then(contents => {
     // convert from JSON string into object
     try {
-      data = JSON.parse(contents);
+      const data = JSON.parse(contents);
+      console.log(data);
+      createDiagramData(data);
+
     } catch(err) {
       console.log(err);
-      data = "Error: File is not valid JSON";
       dialog.showErrorBox("Error reading file!", "File is not valid JSON.");
     }
-    console.log(data);
   }).catch(err => {
     console.log(err);
-    data = "Error reading file!";
     dialog.showErrorBox("Error reading file!", "Cannot read this file.");
   })
 
@@ -108,9 +165,9 @@ const initializeIpcChannels = () => {
   })
 
   // Open system dialog and open a JSON file
-  ipcMain.handle("system-dialog:open-file", async (event, fileType: string): Promise<any> => {
+  ipcMain.handle("system-dialog:open-file", async (event, fileType: string): Promise<unknown> => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
-    let data: any;
+    let data: unknown;
 
     const options: Electron.OpenDialogOptions = {
       title: "Open JSON File...",
@@ -135,13 +192,11 @@ const initializeIpcChannels = () => {
         })
         .catch(err => {
           console.log(err);
-          data = "Error opening dialog!";
           dialog.showErrorBox("Error opening dialog!", "Cannot open dialog.")
         })
     } else {
       // No focused window found
       console.log("Error opening dialog: No focused window found!");
-      data = "Error opening dialog: No focused window found!";
       dialog.showErrorBox("Error opening dialog!", "No focused window found.")
     }
 

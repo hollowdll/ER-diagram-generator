@@ -1,14 +1,14 @@
 // Declare types for dark mode API
 // so renderer.ts can use it
 
-export interface DarkMode {
+export interface IDarkMode {
     toggle: () => Promise<void>,
     system: () => Promise<void>,
     toggleDark: () => Promise<void>,
     toggleLight: () => Promise<void>,
 }
 
-export interface SystemDialog {
+export interface ISystemDialog {
     openJSONFile: () => Promise<void>,
 }
   

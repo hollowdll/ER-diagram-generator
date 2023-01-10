@@ -1,7 +1,10 @@
 {
     "settings": {
-        "diagram-name": "Test Diagram 1",
-        "required-option-output": "NN"
+        "diagramName": "Test Diagram 1",
+        "requiredOptionOutput": "NN"
+    },
+    "customization": {
+        "theme": "dark"
     },
     "details": [
         {
@@ -25,9 +28,6 @@
             "description": "String of characters"
         }
     ],
-    "customization": {
-        "theme": "dark"
-    },
     "entities": [
         {
             "name": "Person",
@@ -35,26 +35,26 @@
             "fields": [
                 {
                     "name": "person_id",
-                    "is_pk": true,
-                    "data_type": "serial",
+                    "isPK": true,
+                    "dataType": "serial",
                     "required": true
                 },
                 {
                     "name": "first_name",
-                    "is_pk": false,
-                    "data_type": "text",
+                    "isPK": false,
+                    "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "last_name",
-                    "is_pk": false,
-                    "data_type": "text",
+                    "isPK": false,
+                    "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "age",
-                    "is_pk": false,
-                    "data_type": "integer",
+                    "isPK": false,
+                    "dataType": "integer",
                     "required": true
                 }
             ]
@@ -65,20 +65,20 @@
             "fields": [
                 {
                     "name": "isbn",
-                    "is_pk": true,
-                    "data_type": "text",
+                    "isPK": true,
+                    "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "book_name",
-                    "is_pk": false,
-                    "data_type": "text",
+                    "isPK": false,
+                    "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "page_count",
-                    "is_pk": false,
-                    "data_type": "integer",
+                    "isPK": false,
+                    "dataType": "integer",
                     "required": true
                 }
             ]

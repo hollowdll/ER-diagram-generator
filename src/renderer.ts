@@ -27,7 +27,7 @@ const resetToSystemTheme = async () => {
 
 
 // Generate diagram object name row
-const generateDiagramObjectNameRow = (name: string): string => {
+const generateDiagramEntityNameRow = (name: string): string => {
     const row = `
         <tr class="object-name-row">
             <th class="object-name" colspan="4">${name}</th>
@@ -41,7 +41,7 @@ const generateDiagramObjectNameRow = (name: string): string => {
 }
 
 // Generate diagram object field row
-const generateDiagramObjectFieldRow =
+const generateDiagramEntityFieldRow =
     (isPrimaryKey: boolean, name: string, dataType: string, required: string): string => {
     // Check if is primary key
     const keyValue = isPrimaryKey === true ? "PK" : "";
@@ -69,10 +69,10 @@ const generateTestObject = () => {
     const holder = document.createElement("table");
     holder.className = "diagram-object";
 
-    const nameRow = generateDiagramObjectNameRow("Person");
-    const fieldRow1 = generateDiagramObjectFieldRow(true, "person_id", "serial", "NN");
-    const fieldRow2 = generateDiagramObjectFieldRow(false, "name", "text", "NN");
-    const fieldRow3 = generateDiagramObjectFieldRow(false, "age", "integer", "NN");
+    const nameRow = generateDiagramEntityNameRow("Person");
+    const fieldRow1 = generateDiagramEntityFieldRow(true, "person_id", "serial", "NN");
+    const fieldRow2 = generateDiagramEntityFieldRow(false, "name", "text", "NN");
+    const fieldRow3 = generateDiagramEntityFieldRow(false, "age", "integer", "NN");
 
     holder.innerHTML += nameRow + fieldRow1 + fieldRow2 + fieldRow3;
 
@@ -80,10 +80,29 @@ const generateTestObject = () => {
     renderArea.appendChild(holder);
 }
 
+// Generate diagram entity that will be rendered
+const generateDiagramEntity = () => {
+    // Make diagram entitiees with HTML table elements
+
+    // Table holder
+    const holder = document.createElement("table");
+    holder.className = "diagram-object";
+
+    // Name and fields
+    const nameRow = generateDiagramEntityNameRow("Person");
+
+
+    // Render
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    renderArea.appendChild(holder);
+}
+
 
 // Generate diagram from object data
 const generateDiagramFromData = (data: any) => {
-    
+
+    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+
 }   
 
 
