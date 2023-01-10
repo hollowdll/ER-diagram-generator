@@ -14,7 +14,7 @@ export interface ISystemDialog {
   
 declare global {
     interface Window {
-        darkMode: DarkMode,
-        systemDialog: SystemDialog,
+        darkMode: IDarkMode,
+        systemDialog: ISystemDialog,
     }
 }

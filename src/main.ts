@@ -63,8 +63,15 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
 }
 
 // Create diagram data
-const createDiagramData = (data: object) => {
-  // Check if all values and types are valid in data
+const createDiagramData = (data: object): IDiagram | undefined => {
+  // Check if all properties and types are valid in data
+  // After that, create diagram data and parse data into it
+
+  // Exact number of items in each section
+  const requiredDetailItemCount = 2;
+  const requiredEntityItemCount = 3;
+  const requiredEntityFieldItemCount = 4;
+
   if (data && typeof data === "object") {
     if ("settings" in data && typeof data.settings === "object"
       && "customization" in data && typeof data.customization === "object"
@@ -89,6 +96,20 @@ const createDiagramData = (data: object) => {
       {
         console.log("Settings and customization: OK");
 
+        // Create diagram data based on checked valid data
+        const diagramData: IDiagram = {
+          settings: {
+            diagramName: data.settings.diagramName,
+            requiredOptionOutput: data.settings.requiredOptionOutput
+          },
+          customization: {
+            theme: data.customization.theme
+          },
+          details: [],
+          entities: [],
+          relationships: {}
+        };
+
         // details
         for (const item of Object.values(data.details)) {
           if (item && typeof item === "object"
@@ -96,7 +117,18 @@ const createDiagramData = (data: object) => {
             && "description" in item && typeof item.description === "string"
           )
           {
-            console.log(item);
+            // Check if there is valid number of props
+            let detailItemCount = 0;
+
+            for (const value of Object.values(item)) {
+              detailItemCount++;
+            }
+
+            // Push detail into diagram data
+            if (detailItemCount === requiredDetailItemCount) {
+              diagramData.details.push(item);
+            }
+            else return;
           }
           else return;
         }
@@ -113,7 +145,7 @@ const createDiagramData = (data: object) => {
           )
           {
             // Check for nested properties
-            for (const field of Object.values(item.fields)) {
+            for (const field of Object.values(item.fields) as any) {
               if (field && typeof field === "object"
                 && "name" in field && typeof field.name === "string"
                 && "isPK" in field && typeof field.isPK === "boolean"
@@ -121,12 +153,30 @@ const createDiagramData = (data: object) => {
                 && "required" in field && typeof field.required === "boolean"
               )
               {
-                console.log(field);
+                // Check if there is valid number of props
+                let entityFieldItemCount = 0;
+
+                for (const value of Object.values(field)) {
+                  entityFieldItemCount++;
+                }
+
+                if (entityFieldItemCount !== requiredEntityFieldItemCount) return;
               }
               else return
             }
 
-            console.log(item);
+            // Check if there is valid number of props
+            let entityItemCount = 0;
+
+            for (const value of Object.values(item)) {
+              entityItemCount++;
+            }
+
+            // Push entity into diagram data
+            if (entityItemCount === requiredEntityItemCount) {
+              diagramData.entities.push(item);
+            }
+            else return;
           }
           else return;
         }
@@ -137,29 +187,17 @@ const createDiagramData = (data: object) => {
         if (data.relationships) {
           console.log("Relationships: OK");
         }
+        else return;
+
+        // If everything was valid, return diagramData
+        console.log(diagramData);
+        return diagramData;
       }
     }
   }
 
-  // Create diagram data based on checked valid data
-  /*
-  const diagramData: IDiagram = {
-    settings: {
-      diagramName: data.settings.diagramName,
-      requiredOptionOutput: data.settings.requiredOptionOutput
-    },
-    customization: {
-      theme: data.customization.theme
-    },
-    details: [
-
-    ],
-    entities: [
-
-    ],
-    relationships: {}
-  }
-  */
+  
+  
 }
 
 // Read contents of JSON file
@@ -167,7 +205,7 @@ const readJSONFile = async (filePaths: string[]): Promise<unknown> => {
   // Read only the first file
   const firstFile = filePaths[0];
   
-  let data: unknown;
+  let diagramData: unknown;
 
   // Read the contents
   await fs.readFile(firstFile, {
@@ -177,7 +215,16 @@ const readJSONFile = async (filePaths: string[]): Promise<unknown> => {
     try {
       const data = JSON.parse(contents);
       console.log(data);
-      createDiagramData(data);
+      diagramData = createDiagramData(data);
+
+      if (diagramData === undefined) {
+        dialog.showMessageBox({
+          message: "Warning! Opened JSON file is not a valid Entity Relationship Diagram generation file."
+          + " Make sure the file has correct syntax and fix typos.",
+          type: "warning",
+          title: "Failed to handle opened file!"
+        });
+      }
 
     } catch(err) {
       console.log(err);
@@ -188,7 +235,7 @@ const readJSONFile = async (filePaths: string[]): Promise<unknown> => {
     dialog.showErrorBox("Error reading file!", "Cannot read this file.");
   })
 
-  return data;
+  return diagramData;
 }
 
 
