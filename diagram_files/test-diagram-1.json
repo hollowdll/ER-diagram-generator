@@ -3,13 +3,28 @@
         "diagram-name": "Test Diagram 1",
         "required-option-output": "NN"
     },
-    "details": {
-        "PK": "Primary Key",
-        "FK": "Foreign Key",
-        "NN": "Not Null",
-        "serial": "Automatic integer starting from 1",
-        "text": "String of characters"
-    },
+    "details": [
+        {
+            "detail": "PK",
+            "description": "Primary Key"
+        },
+        {
+            "detail": "FK",
+            "description": "Foreign Key"
+        },
+        {
+            "detail": "NN",
+            "description": "Not Null"
+        },
+        {
+            "detail": "serial",
+            "description": "Automatic integer starting from 1"
+        },
+        {
+            "detail": "text",
+            "description": "String of characters"
+        }
+    ],
     "customization": {
         "theme": "dark"
     },
