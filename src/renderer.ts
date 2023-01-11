@@ -5,6 +5,15 @@
 // Use preload.js to selectively enable features
 // needed in the renderer process.
 
+// Default text values
+enum DefaultTextValue {
+    DiagramName = "Entity Relationship Diagram Generator Prototype",
+}
+
+// Entity diagram types only used in renderer process
+namespace EntityDiagramTypes {
+    export type EntityField = [boolean, string, string, string]
+}
 
 
 // Dark and light mode toggle
@@ -62,7 +71,7 @@ const generateDiagramEntityFieldRow =
 }
 
 // Generate test object that will be rendered
-const generateTestObject = () => {
+const generateTestEntity = () => {
     // Make diagram objects with HTML table elements
 
     // Table holder
@@ -81,16 +90,29 @@ const generateTestObject = () => {
 }
 
 // Generate diagram entity that will be rendered
-const generateDiagramEntity = () => {
-    // Make diagram entitiees with HTML table elements
+const generateDiagramEntity = (
+    entityName: string,
+    entityFieldList: Array<EntityDiagramTypes.EntityField>
+) => 
+{
+    // Make diagram entities with HTML table elements
 
     // Table holder
     const holder = document.createElement("table");
     holder.className = "diagram-object";
 
-    // Name and fields
-    const nameRow = generateDiagramEntityNameRow("Person");
+    // Name
+    const nameRow = generateDiagramEntityNameRow(entityName);
+    holder.innerHTML += nameRow;
 
+    // Fields
+    for (const field of entityFieldList) {
+        const fieldRow = generateDiagramEntityFieldRow(
+            field[0], field[1], field[2], field[3]
+        );
+
+        holder.innerHTML += fieldRow;
+    }
 
     // Render
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
@@ -100,9 +122,36 @@ const generateDiagramEntity = () => {
 
 // Generate diagram from object data
 const generateDiagramFromData = (data: DiagramStructure.IDiagram) => {
-
+    // Set settings
     const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
     diagramName.innerText = data.settings.diagramName;
+
+    const requiredOptionOutput = data.settings.requiredOptionOutput;
+    const theme = data.customization.theme;
+
+    // Set details
+
+
+    // Create entities
+    for (const entity of data.entities) {
+        let entityFieldList: Array<EntityDiagramTypes.EntityField> = [];
+
+        for (const field of entity.fields) {
+            const fieldRequiredOptionOutput = (
+                field.required === true ? requiredOptionOutput : ""
+            );
+
+            const fieldData: EntityDiagramTypes.EntityField = [
+                field.isPK, field.name, field.dataType, fieldRequiredOptionOutput
+            ];
+
+            entityFieldList.push(fieldData);
+        }
+
+        generateDiagramEntity(entity.name, entityFieldList);
+    }
+
+    // Set relationships
 
 }   
 
@@ -113,8 +162,9 @@ const openJSONFile = async () => {
     const responseData = await window.systemDialog.openJSONFile();
     console.log(responseData);
 
-    // Check if returned valid data responseData
-    if (responseData !== undefined && responseData !== null && typeof responseData !== "string") {
+    // Check if returned data is valid diagram data
+    // Returned data is always of type IDiagram | undefined
+    if (responseData !== undefined && responseData !== null) {
         // Generate diagram from received data
         generateDiagramFromData(responseData);
     }
@@ -168,7 +218,7 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
 
 // Generate new test object
 document.getElementById("generate-test-object-button")?.addEventListener("click", () => {
-    generateTestObject();
+    generateTestEntity();
 });
 
 // Reset current diagram
@@ -186,5 +236,8 @@ document.getElementById("reset-diagram-button")?.addEventListener("click", () =>
     if (elementCount > 0) {
         console.log(`Removed ${elementCount} diagram ${elementCount === 1 ? "table" : "tables"}.`);
     }
+
+    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+    diagramName.innerText = DefaultTextValue.DiagramName;
 });
 
