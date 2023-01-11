@@ -34,12 +34,11 @@ const resetToSystemTheme = async () => {
 }
 
 
-
-// Generate diagram object name row
+// Generate diagram entity name row
 const generateDiagramEntityNameRow = (name: string): string => {
     const row = `
-        <tr class="object-name-row">
-            <th class="object-name" colspan="4">${name}</th>
+        <tr class="entity-name-row">
+            <th class="entity-name" colspan="4">${name}</th>
         </tr>
     `;
 
@@ -49,18 +48,19 @@ const generateDiagramEntityNameRow = (name: string): string => {
     return row;
 }
 
-// Generate diagram object field row
+
+// Generate diagram entity field row
 const generateDiagramEntityFieldRow =
     (isPrimaryKey: boolean, name: string, dataType: string, required: string): string => {
     // Check if is primary key
     const keyValue = isPrimaryKey === true ? "PK" : "";
     
     const row = `
-        <tr class="object-field-row">
-            <td class="object-field-key">${keyValue}</td>
-            <td class="object-field-name"><span>${name}</span></td>
-            <td class="object-field-datatype"><span>${dataType}</span></td>
-            <td class="object-field-required">${required}</td>
+        <tr class="entity-field-row">
+            <td class="entity-field-key">${keyValue}</td>
+            <td class="entity-field-name"><span>${name}</span></td>
+            <td class="entity-field-datatype"><span>${dataType}</span></td>
+            <td class="entity-field-required">${required}</td>
         </tr>
     `;
 
@@ -70,13 +70,14 @@ const generateDiagramEntityFieldRow =
     return row;
 }
 
-// Generate test object that will be rendered
+
+// Generate test entity that will be rendered
 const generateTestEntity = () => {
-    // Make diagram objects with HTML table elements
+    // Make diagram entities with HTML table elements
 
     // Table holder
     const holder = document.createElement("table");
-    holder.className = "diagram-object";
+    holder.className = "diagram-entity";
 
     const nameRow = generateDiagramEntityNameRow("Person");
     const fieldRow1 = generateDiagramEntityFieldRow(true, "person_id", "serial", "NN");
@@ -89,6 +90,7 @@ const generateTestEntity = () => {
     renderArea.appendChild(holder);
 }
 
+
 // Generate diagram entity that will be rendered
 const generateDiagramEntity = (
     entityName: string,
@@ -99,7 +101,7 @@ const generateDiagramEntity = (
 
     // Table holder
     const holder = document.createElement("table");
-    holder.className = "diagram-object";
+    holder.className = "diagram-entity";
 
     // Name
     const nameRow = generateDiagramEntityNameRow(entityName);
@@ -156,8 +158,9 @@ const generateDiagramFromData = (data: DiagramStructure.IDiagram) => {
 }   
 
 
-// Tell main process to open system dialog to open a JSON file
-const openJSONFile = async () => {
+// Tell main process to open system dialog.
+// open a JSON file and generate entity diagram
+const openJSONFileAndGenerateDiagram = async () => {
     // Returns diagram data or undefined if something went wrong
     const responseData = await window.systemDialog.openJSONFile();
     console.log(responseData);
@@ -172,15 +175,7 @@ const openJSONFile = async () => {
 
 
 
-// Debug tool
-document.getElementById('toggle-dark-mode')?.
-    addEventListener('click', toggleDarkMode); 
-document.getElementById('reset-to-system')?.
-    addEventListener('click', resetToSystemTheme);
-
-
-
-// App
+// App buttons
 
 // Theme color selector
 document.getElementById("theme-color-selector")?.addEventListener("change", () => {
@@ -197,7 +192,7 @@ document.getElementById("theme-color-selector")?.addEventListener("change", () =
 
 // Generate from JSON
 document.getElementById("open-json-file-button")?.addEventListener("click", () => {
-    openJSONFile();
+    openJSONFileAndGenerateDiagram();
 });
 
 // Show render area
@@ -209,6 +204,7 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
         renderArea.style["border"] = "1px solid green";
         button.innerText = "Hide";
         button.value = "true";
+
     } else if (button.value === "true") {
         renderArea.style["border"] = "none";
         button.innerText = "Show";
@@ -216,8 +212,8 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
     }
 });
 
-// Generate new test object
-document.getElementById("generate-test-object-button")?.addEventListener("click", () => {
+// Generate new test entity
+document.getElementById("generate-test-entity-button")?.addEventListener("click", () => {
     generateTestEntity();
 });
 

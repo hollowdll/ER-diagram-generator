@@ -13,6 +13,6 @@ contextBridge.exposeInMainWorld('darkMode', {
 
 // Dialog for opening and saving files
 contextBridge.exposeInMainWorld("systemDialog", {
-  openJSONFile: () => ipcRenderer.invoke("system-dialog:open-file", "JSON"),
+  openJSONFile: () => ipcRenderer.invoke("system-dialog:open-json-file"),
 
 })

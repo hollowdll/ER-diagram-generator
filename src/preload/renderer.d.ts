@@ -1,5 +1,5 @@
-// Declare types for dark mode API
-// so renderer.ts can use it
+// Declare global types here. Export preload.ts API types here.
+// Renderer process can use these types.
 
 export interface IDarkMode {
     toggle: () => Promise<void>,

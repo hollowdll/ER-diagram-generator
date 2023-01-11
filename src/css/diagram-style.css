@@ -1,6 +1,6 @@
 /* Entity Diagram styles */
 
-.diagram-object {
+.diagram-entity {
     background-color: rgb(60,60,60);
     border-collapse: collapse;
     margin-bottom: 10px;
@@ -10,29 +10,30 @@
     margin-right: 50px;
 }
 
-.diagram-object > th, td {
+.diagram-entity > th, td {
     /* (For testing) border: 1px solid black; */
     padding: 6px;
 }
 
-.object-name-row {
+.entity-name-row {
     background-color: rgb(90, 90, 170);
 }
 
-.object-field-row > td {
+.entity-field-row > td {
     padding-bottom: 2px;
 }
 
-.object-field-name {
+.entity-field-name {
     padding-right: 20px;
     text-align: left;
 }
 
-.object-field-datatype {
+.entity-field-datatype {
     padding-left: 20px;
     text-align: right;
 }
 
+/* Entity */
 .render-area > table {
     display: inline-table;
 }
