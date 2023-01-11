@@ -99,22 +99,24 @@ const generateDiagramEntity = () => {
 
 
 // Generate diagram from object data
-const generateDiagramFromData = (data: any) => {
+const generateDiagramFromData = (data: DiagramStructure.IDiagram) => {
 
     const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+    diagramName.innerText = data.settings.diagramName;
 
 }   
 
 
 // Tell main process to open system dialog to open a JSON file
 const openJSONFile = async () => {
-    const response = await window.systemDialog.openJSONFile();
-    console.log(response);
+    // Returns diagram data or undefined if something went wrong
+    const responseData = await window.systemDialog.openJSONFile();
+    console.log(responseData);
 
-    // Check if returned valid data response
-    if (response !== undefined && response !== null && typeof response !== "string") {
+    // Check if returned valid data responseData
+    if (responseData !== undefined && responseData !== null && typeof responseData !== "string") {
         // Generate diagram from received data
-        generateDiagramFromData(response);
+        generateDiagramFromData(responseData);
     }
 }
 

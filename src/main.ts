@@ -4,8 +4,6 @@
 import {app, BrowserWindow, ipcMain, nativeTheme, dialog} from "electron";
 import path from "path";
 import * as fs from "fs/promises";
-import { IDiagram, IDiagramDetail, IDiagramEntity, IDiagramEntityField }
-from "./diagram-structure";
 
 // Main window of the app
 const createMainWindow = (): BrowserWindow => {
@@ -26,7 +24,7 @@ const createMainWindow = (): BrowserWindow => {
   win.once('ready-to-show', () => {
     win.show()
   });
-
+  
   // win.setBackgroundColor("rgb(50,50,50)");
 
   // When needed
@@ -63,7 +61,7 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
 }
 
 // Create diagram data
-const createDiagramData = (data: object): IDiagram | undefined => {
+const createDiagramData = (data: object): DiagramStructure.IDiagram | undefined => {
   // Check if all properties and types are valid in data
   // After that, create diagram data and parse data into it
 
@@ -97,7 +95,7 @@ const createDiagramData = (data: object): IDiagram | undefined => {
         console.log("Settings and customization: OK");
 
         // Create diagram data based on checked valid data
-        const diagramData: IDiagram = {
+        const diagramData: DiagramStructure.IDiagram = {
           settings: {
             diagramName: data.settings.diagramName,
             requiredOptionOutput: data.settings.requiredOptionOutput
@@ -214,7 +212,11 @@ const readJSONFile = async (filePaths: string[]): Promise<unknown> => {
     // convert from JSON string into object
     try {
       const data = JSON.parse(contents);
-      console.log(data);
+
+      // Check raw data
+      // console.log(data);
+
+      // Convert data into valid diagram data
       diagramData = createDiagramData(data);
 
       if (diagramData === undefined) {
@@ -278,6 +280,7 @@ const initializeIpcChannels = () => {
           console.log(`Opened File Paths: ${result.filePaths}`);
 
           if (!result.canceled && result.filePaths.length > 0) {
+            // Read data
             data = readJSONFile(result.filePaths);
           }
 
