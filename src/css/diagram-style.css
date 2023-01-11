@@ -1,4 +1,4 @@
-
+/* Entity Diagram styles */
 
 .diagram-object {
     background-color: rgb(60,60,60);
@@ -31,4 +31,8 @@
 .object-field-datatype {
     padding-left: 20px;
     text-align: right;
+}
+
+.render-area > table {
+    display: inline-table;
 }
