@@ -4,9 +4,9 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 // Dark mode
-contextBridge.exposeInMainWorld('darkMode', {
-  toggle: () => ipcRenderer.invoke('dark-mode:toggle'),
-  system: () => ipcRenderer.invoke('dark-mode:system'),
+contextBridge.exposeInMainWorld("darkMode", {
+  toggle: () => ipcRenderer.invoke("dark-mode:toggle"),
+  system: () => ipcRenderer.invoke("dark-mode:system"),
   toggleDark: () => ipcRenderer.invoke("dark-mode:toggle", "dark"),
   toggleLight: () => ipcRenderer.invoke("dark-mode:toggle", "light")
 })
@@ -15,4 +15,8 @@ contextBridge.exposeInMainWorld('darkMode', {
 contextBridge.exposeInMainWorld("systemDialog", {
   openJSONFile: () => ipcRenderer.invoke("system-dialog:open-json-file"),
 
+})
+
+contextBridge.exposeInMainWorld("openWindow", {
+  createEntity: () => ipcRenderer.invoke("open-window:create-entity"),
 })

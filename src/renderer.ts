@@ -217,6 +217,11 @@ document.getElementById("generate-test-entity-button")?.addEventListener("click"
     generateTestEntity();
 });
 
+// Create new custom entity
+document.getElementById("create-entity-button")?.addEventListener("click", async () => {
+    await window.openWindow.createEntity();
+});
+
 // Reset current diagram
 document.getElementById("reset-diagram-button")?.addEventListener("click", () => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;

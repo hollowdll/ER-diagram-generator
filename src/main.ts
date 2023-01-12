@@ -9,7 +9,6 @@ import { diagramFile } from "./diagram";
 const createMainWindow = (): BrowserWindow => {
   const win = new BrowserWindow({
     title: "ER diagram generator",
-    darkTheme: true,
     width: 800,
     height: 600,
     minWidth: 500,
@@ -58,6 +57,32 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
   // win.setBackgroundColor("rgb(50,50,50)");
 
   win.loadFile(path.join(process.cwd(), "src/html/debug.html"));
+}
+
+// Window to create a new entity
+const createEntityCreationWindow = (mainWindow: BrowserWindow) => {
+  const win = new BrowserWindow({
+    title: "Create New Entity",
+    width: 600,
+    height: 500,
+    resizable: false,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      sandbox: true
+    },
+    show: false,
+    parent: mainWindow,
+    modal: true
+  });
+
+  win.once('ready-to-show', () => {
+    win.show()
+  });
+
+  // In production
+  // win.setMenuBarVisibility(false);
+
+  win.loadFile("/src/html/create-entity.html");
 }
 
 
@@ -118,6 +143,18 @@ const initializeIpcChannels = () => {
 
     return data;
   })
+
+  // Create window to create a new diagram entity
+  ipcMain.handle("open-window:create-entity", () => {
+    // Get main window
+    const mainWindow = BrowserWindow.fromId(1);
+
+    if (mainWindow) {
+      createEntityCreationWindow(mainWindow);
+    } else {
+      dialog.showErrorBox("Error!", "Application main window was not found!");
+    }
+  })
 }
 
 // This method will be called when Electron has finished
@@ -127,8 +164,9 @@ app.whenReady().then(() => {
   // Call before creating app windows
   initializeIpcChannels();
 
+  // Create main window first so it will always get ID=1
   createMainWindow();
-  // const mainWindow = createMainWindow();
+  
   // createDebugWindow(mainWindow);
 
   app.on('activate', () => {

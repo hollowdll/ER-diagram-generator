@@ -9,7 +9,6 @@
     top: 0px;
     /* white-space: nowrap;
     overflow-x: auto; */
-    display: none;
 }
 
 .top-bar > div {
@@ -20,6 +19,7 @@
     margin-right: 5px;
 }
 
+/* Currently Disabled
 .top-bar-new {
     list-style-type: none;
     margin: 0;
@@ -72,10 +72,7 @@
 .top-bar-new > li > button:hover {
     background-color: rgb(60,60,60);
 }
-
-.theme-color {
-
-}
+*/
 
 
 

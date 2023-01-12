@@ -11,12 +11,17 @@ export interface IDarkMode {
 export interface ISystemDialog {
     openJSONFile: () => Promise<void>,
 }
+
+export interface IOpenWindow {
+    createEntity: () => Promise<void>,
+}
   
 declare global {
     // Make preload script API types available to renderer process
     interface Window {
         darkMode: IDarkMode,
         systemDialog: ISystemDialog,
+        openWindow: IOpenWindow,
     }
 
     // Make this namespace available to renderer process
