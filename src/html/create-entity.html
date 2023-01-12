@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Debug tool</title>
 
     <link rel="stylesheet" href="../css/global-style.css">
     <link rel="stylesheet" href="../css/color-theme.css">
@@ -16,6 +15,31 @@
 <body>
 
     <h2>Create Entity</h2>
+
+    <form>
+        <p>
+            <label for="entity-name">Entity Name: </label>
+            <input type="text" id="entity-name">
+        </p>
+        <p>
+            <label for="field-name">Field Name: </label>
+            <input type="text" id="field-name">
+        </p>
+        <p>
+            <label for="is-pk">Is Primary Key: </label>
+            <input type="checkbox" id="is-pk">
+        </p>
+        <p>
+            <label for="data-type">Data Type: </label>
+            <input type="text" id="data-type">
+        </p>
+        <p>
+            <label for="required">Required: </label>
+            <input type="checkbox" id="required">
+        </p>
+    </form>
+
+    <button>Add Field</button>
 
 </body>
 </html>

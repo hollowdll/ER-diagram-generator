@@ -29,7 +29,7 @@ const createMainWindow = (): BrowserWindow => {
   // When needed
   // win.setFullScreen(true);
 
-  win.loadFile(path.join(process.cwd(), "src/html/index.html"));
+  win.loadFile("./src/html/index.html");
 
   // In development mode
   win.webContents.openDevTools();
@@ -41,6 +41,7 @@ const createMainWindow = (): BrowserWindow => {
 // Contains buttons to test features
 const createDebugWindow = (mainWindow: BrowserWindow) => {
   const win = new BrowserWindow({
+    title: "Debug Tool",
     width: 250,
     height: 400,
     webPreferences: {
@@ -56,7 +57,7 @@ const createDebugWindow = (mainWindow: BrowserWindow) => {
 
   // win.setBackgroundColor("rgb(50,50,50)");
 
-  win.loadFile(path.join(process.cwd(), "src/html/debug.html"));
+  win.loadFile("./src/html/debug.html");
 }
 
 // Window to create a new entity
@@ -82,7 +83,7 @@ const createEntityCreationWindow = (mainWindow: BrowserWindow) => {
   // In production
   // win.setMenuBarVisibility(false);
 
-  win.loadFile("/src/html/create-entity.html");
+  win.loadFile("./src/html/create-entity.html");
 }
 
 
