@@ -18,7 +18,7 @@
 
 <body>
 
-    <nav class="top-bar">
+    <div class="top-bar">
         <div class="theme-color">
             <label for="theme-color-selector">Theme Color: </label>
             <select id="theme-color-selector">
@@ -43,7 +43,36 @@
             <label>Reset Current Diagram: </label>
             <button id="reset-diagram-button">Reset</button>
         </div>
-    </nav>
+    </div>
+
+    <ul class="top-bar-new">
+        <li class="theme-color-li">
+            <div class="theme-color">
+                <label for="theme-color-selector">Theme Color: </label>
+                <select id="theme-color-selector">
+                    <option value="system">System</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+        </li>
+        <li class="test-group">
+            <button class="test-group-button">Test Group 1</button>
+            <div class="dropdown-content">
+                <button>Button 1</button>
+                <button>Button 2</button>
+                <button>Button 3 aaaaaa</button>
+            </div>
+        </li>
+        <li class="test-group">
+            <button class="test-group-button">Test Group 2</button>
+            <div class="dropdown-content">
+                <button>Button 1</button>
+                <button>Button 2 aaaaaaaaaaaaaaa</button>
+                <button>Button 3 aaaaaa</button>
+            </div>
+        </li>
+    </ul>
 
     <div class="description-area">
         <h2 id="diagram-name">Entity Relationship Diagram Generator Prototype</h2>

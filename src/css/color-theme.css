@@ -7,7 +7,7 @@
         color: white;
     }
 
-    nav {
+    .top-bar {
         background-color: rgb(25,25,25);
     }
 
@@ -27,7 +27,7 @@
         color: black;
     }
 
-    nav {
+    .top-bar {
         background-color: rgb(180,180,180);
     }
 
