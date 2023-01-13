@@ -1,6 +1,6 @@
 // This file contains native menus for application windows
 
-import { app, Menu, shell } from "electron";
+import { app, Menu, shell, nativeTheme } from "electron";
 
 // Create menu for main window
 export const createMainWindowMenu = (): Electron.Menu => {
@@ -125,20 +125,23 @@ export const createMainWindowMenu = (): Electron.Menu => {
           submenu: [
             {
               label: "System",
-              click: async () => {
-                
+              type: "radio",
+              click: () => {
+                nativeTheme.themeSource = "system";
               }
             },
             {
               label: "Dark",
-              click: async () => {
-                
+              type: "radio",
+              click: () => {
+                nativeTheme.themeSource = "dark";
               }
             },
             {
               label: "Light",
-              click: async () => {
-                
+              type: "radio",
+              click: () => {
+                nativeTheme.themeSource = "light";
               }
             }
           ]
