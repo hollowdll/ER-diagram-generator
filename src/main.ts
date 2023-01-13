@@ -40,29 +40,6 @@ const createMainWindow = (): BrowserWindow => {
   return win;
 }
 
-// Debug window for development
-// Contains buttons to test features
-const createDebugWindow = (mainWindow: BrowserWindow) => {
-  const win = new BrowserWindow({
-    title: "Debug Tool",
-    width: 250,
-    height: 400,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-    },
-    show: false,
-    parent: mainWindow
-  });
-
-  win.once('ready-to-show', () => {
-    win.show()
-  });
-
-  // win.setBackgroundColor("rgb(50,50,50)");
-
-  win.loadFile("./src/html/debug.html");
-}
-
 // Window to create a new entity
 const createEntityCreationWindow = (mainWindow: BrowserWindow) => {
   const win = new BrowserWindow({
@@ -170,8 +147,6 @@ app.whenReady().then(() => {
 
   // Create main window first so it will always get ID=1
   createMainWindow();
-  
-  // createDebugWindow(mainWindow);
 
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the

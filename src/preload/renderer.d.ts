@@ -1,33 +1,40 @@
 // Declare global types here. Export preload.ts API types here.
 // Renderer process can use these types.
 
-export interface IDarkMode {
-    toggle: () => Promise<void>,
-    system: () => Promise<void>,
-    toggleDark: () => Promise<void>,
-    toggleLight: () => Promise<void>,
-}
-
-export interface ISystemDialog {
-    openJSONFile: () => Promise<void>,
-}
-
-export interface IOpenWindow {
-    createEntity: () => Promise<void>,
+export namespace PreloadProcess {
+    export interface DarkMode {
+        toggle: () => Promise<void>,
+        system: () => Promise<void>,
+        toggleDark: () => Promise<void>,
+        toggleLight: () => Promise<void>,
+    }
+    
+    export interface SystemDialog {
+        openJSONFile: () => Promise<void>,
+    }
+    
+    export interface OpenWindow {
+        createEntity: () => Promise<void>,
+    }
+    
+    export interface MenuItemFunctionality {
+        onCreateTestEntity: (callback: () => void) => void
+    }
 }
   
 declare global {
     // Make preload script API types available to renderer process
     interface Window {
-        darkMode: IDarkMode,
-        systemDialog: ISystemDialog,
-        openWindow: IOpenWindow,
+        darkMode: PreloadProcess.DarkMode,
+        systemDialog: PreloadProcess.SystemDialog,
+        openWindow: PreloadProcess.OpenWindow,
+        menuItemFunctionality: PreloadProcess.MenuItemFunctionality,
     }
 
     // Make this namespace available to renderer process
     // Contains types for diagram data
     namespace DiagramStructure {
-        interface IDiagram {
+        interface Diagram {
             settings: {
                 diagramName: string,
                 requiredOptionOutput: string
@@ -35,25 +42,25 @@ declare global {
             customization: {
                 theme: string
             },
-            details: IDiagramDetail[],
-            entities: IDiagramEntity[],
+            details: DiagramDetail[],
+            entities: DiagramEntity[],
             relationships: {
         
             }
         }
         
-        interface IDiagramDetail {
+        interface DiagramDetail {
             detail: string,
             description: string
         }
         
-        interface IDiagramEntity {
+        interface DiagramEntity {
             name: string,
             id: number,
             fields: IDiagramEntityField[]
         }
         
-        interface IDiagramEntityField {
+        interface DiagramEntityField {
             name: string,
             isPK: boolean,
             dataType: string,

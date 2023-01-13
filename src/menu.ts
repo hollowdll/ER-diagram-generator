@@ -95,22 +95,44 @@ export const createMainWindowMenu = (): Electron.Menu => {
         {
           label: "Create New Diagram",
           submenu: [
-            { label: "Generate From JSON" },
-            { label: "Use Editor" }
+            {
+              label: "Generate From JSON",
+
+            },
+            {
+              label: "Use Editor",
+
+            }
           ]
         },
         {
           label: "Create New Entity",
           submenu: [
-            { label: "Test Entity" },
-            { label: "Use Editor" }
+            {
+              label: "Test Entity",
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("create-new-entity:test-entity");
+                }
+              }
+            },
+            {
+              label: "Use Editor",
+            
+            }
           ]
         },
         {
           label: "Options",
           submenu: [
-            { label: "Reset Current Diagram" },
-            { label: "Show Render Area" }
+            {
+              label: "Reset Current Diagram",
+            
+            },
+            {
+              label: "Show Render Area",
+
+            }
           ]
         },
       ]

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>ER diagram generator prototype</title>
 
     <link rel="stylesheet" href="../css/global-style.css">
     <link rel="stylesheet" href="../css/color-theme.css">
@@ -17,68 +16,6 @@
 </head>
 
 <body>
-
-    <div class="top-bar">
-        <div class="theme-color">
-            <label for="theme-color-selector">Theme Color: </label>
-            <select id="theme-color-selector">
-                <option value="system">System</option>
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-            </select>
-        </div>
-        <div class="open-json-file">
-            <label for="open-json-file-button">Generate From JSON: </label>
-            <button id="open-json-file-button">Open File</button>
-        </div>
-        <div class="show-render-area">
-            <label for="show-render-area-button">Show Render Area: </label>
-            <button id="show-render-area-button" value="false">Show</button>
-        </div>
-        <div class="generate-test-entity">
-            <label for="generate-test-entity-button">Generate New Test Entity: </label>
-            <button id="generate-test-entity-button">Generate</button>
-        </div>
-        <div class="create-entity">
-            <label for="create-entity-button">Create New Entity: </label>
-            <button id="create-entity-button">Create</button>
-        </div>
-        <div class="reset-diagram">
-            <label>Reset Current Diagram: </label>
-            <button id="reset-diagram-button">Reset</button>
-        </div>
-    </div>
-
-    <!--
-    <ul class="top-bar-new">
-        <li class="theme-color-li">
-            <div class="theme-color">
-                <label for="theme-color-selector">Theme Color: </label>
-                <select id="theme-color-selector">
-                    <option value="system">System</option>
-                    <option value="dark">Dark</option>
-                    <option value="light">Light</option>
-                </select>
-            </div>
-        </li>
-        <li class="test-group">
-            <button class="test-group-button">Test Group 1</button>
-            <div class="dropdown-content">
-                <button>Button 1</button>
-                <button>Button 2</button>
-                <button>Button 3 aaaaaa</button>
-            </div>
-        </li>
-        <li class="test-group">
-            <button class="test-group-button">Test Group 2</button>
-            <div class="dropdown-content">
-                <button>Button 1</button>
-                <button>Button 2 aaaaaaaaaaaaaaa</button>
-                <button>Button 3 aaaaaa</button>
-            </div>
-        </li>
-    </ul>
-    -->
 
     <div class="description-area">
         <h2 id="diagram-name">Entity Relationship Diagram Generator Prototype</h2>

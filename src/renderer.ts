@@ -15,25 +15,6 @@ namespace EntityDiagramTypes {
     export type EntityField = [boolean, string, string, string]
 }
 
-
-// Dark and light mode toggle
-
-const toggleDarkMode = async () => {
-    await window.darkMode.toggleDark();
-    console.log("Toggle dark mode");
-}
-
-const toggleLightMode = async () => {
-    await window.darkMode.toggleLight();
-    console.log("Toggle light mode");
-}
-
-const resetToSystemTheme = async () => {
-    await window.darkMode.system();
-    console.log("Reset to system theme");
-}
-
-
 // Generate diagram entity name row
 const generateDiagramEntityNameRow = (name: string): string => {
     const row = `
@@ -123,7 +104,7 @@ const generateDiagramEntity = (
 
 
 // Generate diagram from object data
-const generateDiagramFromData = (data: DiagramStructure.IDiagram) => {
+const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
     // Set settings
     const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
     diagramName.innerText = data.settings.diagramName;
@@ -175,20 +156,9 @@ const openJSONFileAndGenerateDiagram = async () => {
 
 
 
-// App buttons
+// App menu buttons
 
-// Theme color selector
-document.getElementById("theme-color-selector")?.addEventListener("change", () => {
-    const themeColorSelector = document.getElementById("theme-color-selector") as HTMLSelectElement;
 
-    if (themeColorSelector.value === "system") {
-        resetToSystemTheme();
-    } else if (themeColorSelector.value === "dark") {
-        toggleDarkMode();
-    } else if (themeColorSelector.value === "light") {
-        toggleLightMode();
-    }
-});
 
 // Generate from JSON
 document.getElementById("open-json-file-button")?.addEventListener("click", () => {
@@ -213,9 +183,9 @@ document.getElementById("show-render-area-button")?.addEventListener("click", ()
 });
 
 // Generate new test entity
-document.getElementById("generate-test-entity-button")?.addEventListener("click", () => {
+window.menuItemFunctionality.onCreateTestEntity(() => {
     generateTestEntity();
-});
+})
 
 // Create new custom entity
 document.getElementById("create-entity-button")?.addEventListener("click", async () => {

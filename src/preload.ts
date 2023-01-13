@@ -17,6 +17,13 @@ contextBridge.exposeInMainWorld("systemDialog", {
 
 })
 
+// Open app windows
 contextBridge.exposeInMainWorld("openWindow", {
   createEntity: () => ipcRenderer.invoke("open-window:create-entity"),
+})
+
+// Events that get triggered when menu items are clicked
+contextBridge.exposeInMainWorld("menuItemFunctionality", {
+  onCreateTestEntity: (callback: () => void) => ipcRenderer.on("create-new-entity:test-entity", callback),
+
 })

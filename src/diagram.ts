@@ -6,7 +6,7 @@ import * as fs from "fs/promises";
 
 export namespace diagramFile {
   // Create diagram data
-  const createDiagramData = (data: object): DiagramStructure.IDiagram | undefined => {
+  const createDiagramData = (data: object): DiagramStructure.Diagram | undefined => {
     // Check if all properties and types are valid in data
     // After that, create diagram data and parse data into it
 
@@ -38,7 +38,7 @@ export namespace diagramFile {
           console.log("Settings and customization: OK");
 
           // Create diagram data based on checked valid data
-          const diagramData: DiagramStructure.IDiagram = {
+          const diagramData: DiagramStructure.Diagram = {
             settings: {
               diagramName: data.settings.diagramName,
               requiredOptionOutput: data.settings.requiredOptionOutput
