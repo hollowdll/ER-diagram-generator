@@ -4,6 +4,7 @@
 import { app, BrowserWindow, ipcMain, nativeTheme, dialog } from "electron";
 import path from "path";
 import { diagramFile } from "./diagram";
+import { createMainWindowMenu } from "./menu";
 
 // Main window of the app
 const createMainWindow = (): BrowserWindow => {
@@ -17,8 +18,10 @@ const createMainWindow = (): BrowserWindow => {
       preload: path.join(__dirname, "preload.js"),
       sandbox: true
     },
-    show: false
+    show: false,
   });
+
+  win.setMenu(createMainWindowMenu());
 
   win.once('ready-to-show', () => {
     win.show()
