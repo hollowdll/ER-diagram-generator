@@ -88,30 +88,61 @@ export const createMainWindowMenu = (): Electron.Menu => {
       ]
     },
 
-    // Create new diagram menu
+    // Diagram menu
     {
-      label: "Create New Diagram",
+      label: "Diagram",
       submenu: [
-        { label: "Generate From JSON" },
-        { label: "Use Editor" },
+        {
+          label: "Create New Diagram",
+          submenu: [
+            { label: "Generate From JSON" },
+            { label: "Use Editor" }
+          ]
+        },
+        {
+          label: "Create New Entity",
+          submenu: [
+            { label: "Test Entity" },
+            { label: "Use Editor" }
+          ]
+        },
+        {
+          label: "Options",
+          submenu: [
+            { label: "Reset Current Diagram" },
+            { label: "Show Render Area" }
+          ]
+        },
       ]
     },
 
-    // Create new entity menu
+    // Settings
     {
-      label: "Create New Entity",
+      label: "Settings",
       submenu: [
-        { label: "Test Entity" },
-        { label: "Use Editor" },
-      ]
-    },
-
-    // Diagram options menu
-    {
-      label: "Diagram Options",
-      submenu: [
-        { label: "Reset Current Diagram" },
-        { label: "Show Render Area" },
+        {
+          label: "Theme Color",
+          submenu: [
+            {
+              label: "System",
+              click: async () => {
+                
+              }
+            },
+            {
+              label: "Dark",
+              click: async () => {
+                
+              }
+            },
+            {
+              label: "Light",
+              click: async () => {
+                
+              }
+            }
+          ]
+        }
       ]
     },
 
