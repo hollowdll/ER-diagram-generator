@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/color-theme.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/diagram-style.css">
+    <link rel="stylesheet" href="../css/side-bar.css">
 
     <!-- You can also require other files to run in this process -->
     <script defer src="../../dist/renderer.js"></script>
@@ -17,11 +18,38 @@
 
 <body>
 
-    <div class="description-area">
-        <h2 id="diagram-name">Entity Relationship Diagram Generator Prototype</h2>
+    <div class="sidebar">
+        <div class="detail-area">
+            <table class="sidebar-table">
+                <tr class="sidebar-table-tr">
+                    <th colspan="2">Field Details</th>
+                </tr>
+                <tr class="sidebar-table-tr">
+                    <td>PK</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr class="sidebar-table-tr">
+                    <td>FK</td>
+                    <td>Foreign Key</td>
+                </tr>
+            </table>
+        </div>
+        <div class="relationship-area">
+            <table class="sidebar-table">
+                <tr class="sidebar-table-tr">
+                    <th>Relationships</th>
+                </tr>
+                <tr class="sidebar-table-tr">
+
+                </tr>
+            </table>
+        </div>
     </div>
 
-    <div class="render-area" id="render-area"></div>
+    <main class="diagram-area">
+        <h2 id="diagram-name">Entity Relationship Diagram Generator Prototype</h2>
+        <div class="render-area" id="render-area"></div>
+    </main>
 
 </body>
 </html>
