@@ -25,5 +25,7 @@ contextBridge.exposeInMainWorld("openWindow", {
 // Events that get triggered when menu items are clicked
 contextBridge.exposeInMainWorld("menuItemFunctionality", {
   onCreateTestEntity: (callback: () => void) => ipcRenderer.on("create-new-entity:test-entity", callback),
-
+  onCreateDiagramFromJSON: (callback: () => void) => ipcRenderer.on("create-new-diagram:generate-from-json", callback),
+  onResetDiagram: (callback: () => void) => ipcRenderer.on("diagram-options:reset-current-diagram", callback),
+  onShowRenderArea: (callback: () => void) => ipcRenderer.on("diagram-options:show-render-area", callback),
 })

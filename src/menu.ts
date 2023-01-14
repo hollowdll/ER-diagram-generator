@@ -97,7 +97,11 @@ export const createMainWindowMenu = (): Electron.Menu => {
           submenu: [
             {
               label: "Generate From JSON",
-
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("create-new-diagram:generate-from-json");
+                }
+              }
             },
             {
               label: "Use Editor",
@@ -127,11 +131,19 @@ export const createMainWindowMenu = (): Electron.Menu => {
           submenu: [
             {
               label: "Reset Current Diagram",
-            
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:reset-current-diagram");
+                }
+              }
             },
             {
               label: "Show Render Area",
-
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:show-render-area");
+                }
+              }
             }
           ]
         },

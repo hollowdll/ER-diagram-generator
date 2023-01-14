@@ -10,6 +10,11 @@ enum DefaultTextValue {
     DiagramName = "Entity Relationship Diagram Generator Prototype",
 }
 
+// Diagram's render area
+enum DiagramRenderAreaDetail {
+    Border = "1px solid green",
+}
+
 // Entity diagram types only used in renderer process
 namespace EntityDiagramTypes {
     export type EntityField = [boolean, string, string, string]
@@ -143,7 +148,8 @@ const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
 // open a JSON file and generate entity diagram
 const openJSONFileAndGenerateDiagram = async () => {
     // Returns diagram data or undefined if something went wrong
-    const responseData = await window.systemDialog.openJSONFile();
+    const responseData: DiagramStructure.Diagram | undefined
+        = await window.systemDialog.openJSONFile();
     console.log(responseData);
 
     // Check if returned data is valid diagram data
@@ -158,42 +164,29 @@ const openJSONFileAndGenerateDiagram = async () => {
 
 // App menu buttons
 
-
-
-// Generate from JSON
-document.getElementById("open-json-file-button")?.addEventListener("click", () => {
+// Generate Diagram from JSON
+window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
     openJSONFileAndGenerateDiagram();
-});
+})
 
 // Show render area
-document.getElementById("show-render-area-button")?.addEventListener("click", () => {
-    const button = document.getElementById("show-render-area-button") as HTMLButtonElement;
+window.menuItemFunctionality.onShowRenderArea(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
-
-    if (button.value === "false") {
-        renderArea.style["border"] = "1px solid green";
-        button.innerText = "Hide";
-        button.value = "true";
-
-    } else if (button.value === "true") {
-        renderArea.style["border"] = "none";
-        button.innerText = "Show";
-        button.value = "false";
-    }
-});
+    renderArea.style["border"] = "1px solid green";
+})
 
 // Generate new test entity
 window.menuItemFunctionality.onCreateTestEntity(() => {
     generateTestEntity();
 })
 
-// Create new custom entity
+// Create new entity with editor
 document.getElementById("create-entity-button")?.addEventListener("click", async () => {
     await window.openWindow.createEntity();
 });
 
 // Reset current diagram
-document.getElementById("reset-diagram-button")?.addEventListener("click", () => {
+window.menuItemFunctionality.onResetDiagram(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
     let elementCount = 0;
 
@@ -210,5 +203,5 @@ document.getElementById("reset-diagram-button")?.addEventListener("click", () =>
 
     const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
     diagramName.innerText = DefaultTextValue.DiagramName;
-});
+})
 
