@@ -1,20 +1,7 @@
 # ER-diagram-generator
-Generate Entity Relationship Diagrams by giving the application instructions as a simple DDL script.
+Generate Entity Relationship Diagrams by giving the application instructions in a JSON file with a specific structure.
 
-This project is going to be a cross-platform desktop application made with electron framework. A possible web-based version might be developed at a later time.
+This project is a cross-platform desktop application made with electron framework and TypeScript.
 
-# Tools and tech stack
-This project is meant for learning purposes.
-
-I will be practicing the following technologies:
-- Electron, NodeJS, TypeScript
-- Svelte for frontend
-- Tailwind for CSS
-- Maybe some database?
-- Probably more tools/libraries
-
-# Documentation
-Since this project might scale to be large, I am considering making a documentation for it and its APIs. This section will be updated at a later time.
-
-# How to use
-This section will be updated at a later time as well. This project is going to include my own made Data Definition Language (DDL), that I will be developing specifically for this project. More about this in the future.
+## Development
+This project is in early development. No releases yet. Early development is being done in <code>prototyping</code> branch.
