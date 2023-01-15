@@ -11,8 +11,10 @@ enum DefaultTextValue {
 }
 
 // Diagram's render area
-enum DiagramRenderAreaDetail {
-    Border = "1px solid green",
+enum DiagramAreaDetail {
+    DiagramAreaMarginLeft = "300px",
+    DiagramNameMarginLeft = "60px",
+    RenderAreaBorder = "1px solid green",
 }
 
 // Entity diagram types only used in renderer process
@@ -29,7 +31,7 @@ const generateDiagramEntityNameRow = (name: string): string => {
     `;
 
     // Test output format
-    console.log(row);
+    // console.log(row);
 
     return row;
 }
@@ -51,7 +53,7 @@ const generateDiagramEntityFieldRow =
     `;
 
     // Test output format
-    console.log(row);
+    // console.log(row);
 
     return row;
 }
@@ -108,6 +110,52 @@ const generateDiagramEntity = (
 }
 
 
+// Generate diagram details that will be rendered
+const generateDiagramDetails = (details: DiagramStructure.DiagramDetail[]) => {
+    const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
+
+    for (const detail of details) {
+        const row = document.createElement("tr");
+        row.className = "sidebar-table-tr";
+        row.innerHTML = `
+            <td>${detail.detail}</td>
+            <td>${detail.description}</td>
+        `;
+
+        detailTableBody.appendChild(row);
+    }
+}
+
+
+// Generate diagram relationships that will be rendered
+const generateDiagramRelationships = () => {
+
+}
+
+
+// Show/hide sidebar
+const toggleSidebar = (visible: boolean) => {
+    const sidebar = document.querySelector(".sidebar") as HTMLDivElement;
+    const diagramArea = document.querySelector(".diagram-area") as HTMLDivElement;
+    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+
+    sidebar.style.display = visible === true ? "block" : "none";
+
+    if (visible) {
+        sidebar.style.display = "block";
+        diagramArea.style.marginLeft = DiagramAreaDetail.DiagramAreaMarginLeft;
+        diagramName.style.textAlign = "unset";
+        diagramName.style.marginLeft = DiagramAreaDetail.DiagramNameMarginLeft;
+
+    } else {
+        sidebar.style.display = "false";
+        diagramArea.style.marginLeft = "0px";
+        diagramName.style.textAlign = "center";
+        diagramName.style.marginLeft = "0px";
+    }
+}
+
+
 // Generate diagram from object data
 const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
     // Set settings
@@ -115,10 +163,6 @@ const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
     diagramName.innerText = data.settings.diagramName;
 
     const requiredOptionOutput = data.settings.requiredOptionOutput;
-    const theme = data.customization.theme;
-
-    // Set details
-
 
     // Create entities
     for (const entity of data.entities) {
@@ -139,8 +183,13 @@ const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
         generateDiagramEntity(entity.name, entityFieldList);
     }
 
+    // Set details
+    generateDiagramDetails(data.details);
+
     // Set relationships
 
+    // Show sidebar
+    toggleSidebar(true);
 }   
 
 
@@ -169,25 +218,32 @@ window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
     openJSONFileAndGenerateDiagram();
 })
 
+
 // Show render area
 window.menuItemFunctionality.onShowRenderArea(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
     renderArea.style["border"] = "1px solid green";
 })
 
+
 // Generate new test entity
 window.menuItemFunctionality.onCreateTestEntity(() => {
     generateTestEntity();
 })
+
 
 // Create new entity with editor
 document.getElementById("create-entity-button")?.addEventListener("click", async () => {
     await window.openWindow.createEntity();
 });
 
+
 // Reset current diagram
 window.menuItemFunctionality.onResetDiagram(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+    const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
+    const relationshipTableBody = document.getElementById("relationship-area-table-body") as HTMLTableSectionElement;
     let elementCount = 0;
 
     // Blazingly fast (check if firstChild exists, not lastChild)
@@ -201,22 +257,31 @@ window.menuItemFunctionality.onResetDiagram(() => {
         console.log(`Removed ${elementCount} diagram ${elementCount === 1 ? "table" : "tables"}.`);
     }
 
-    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+    // Reset diagram name to default
     diagramName.innerText = DefaultTextValue.DiagramName;
+
+    // Remove details
+    while (detailTableBody.firstChild) {
+        detailTableBody.removeChild(detailTableBody.lastChild as Node);
+    }
+
+    // Remove relationships
+    while (relationshipTableBody.firstChild) {
+        relationshipTableBody.removeChild(relationshipTableBody.lastChild as Node);
+    }
+
+    // Hide sidebar
+    toggleSidebar(false);
 })
+
 
 // Toggle details
 window.menuItemFunctionality.onToggleDetails(() => {
-    const detailArea = document.getElementById("detail-area") as HTMLDivElement;
-    const style = detailArea.style;
-
-    style.display = style.display === "none" ? "block" : "none";
+    
 })
+
 
 // Toggle relationships
 window.menuItemFunctionality.onToggleRelationships(() => {
-    const relationshipArea = document.getElementById("relationship-area") as HTMLDivElement;
-    const style = relationshipArea.style;
-
-    style.display = style.display === "none" ? "block" : "none";
+    
 })

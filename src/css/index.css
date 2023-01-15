@@ -1,12 +1,14 @@
 /* Styles for diagram area */
 
 .diagram-area {
-    margin-left: 300px;
+    /* margin-left: 300px; */
+    overflow: auto;
 }
 
 #diagram-name {
+    /* margin-left: 60px; */
     margin-top: 30px;
-    margin-left: 60px;
+    text-align: center;
 }
 
 .render-area {
