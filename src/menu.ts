@@ -1,6 +1,7 @@
 // This file contains native menus for application windows
 
 import { app, Menu, shell, nativeTheme } from "electron";
+import { isAppDebugMode } from "./main";
 
 // Create menu for main window
 export const createMainWindowMenu = (): Electron.Menu => {
@@ -59,7 +60,9 @@ export const createMainWindowMenu = (): Electron.Menu => {
       submenu: [
         { role: 'reload' },
         { role: 'forceReload' },
-        { role: 'toggleDevTools' },
+        ...(isAppDebugMode ? [
+          { role: 'toggleDevTools' }
+        ] as Electron.MenuItemConstructorOptions[] : []),
         { type: 'separator' },
         { role: 'resetZoom' },
         { role: 'zoomIn' },
@@ -144,7 +147,23 @@ export const createMainWindowMenu = (): Electron.Menu => {
                   focusedWindow.webContents.send("diagram-options:show-render-area");
                 }
               }
-            }
+            },
+            {
+              label: "Toggle Details",
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:toggle-details");
+                }
+              }
+            },
+            {
+              label: "Toggle Relationships",
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:toggle-relationships");
+                }
+              }
+            },
           ]
         },
       ]

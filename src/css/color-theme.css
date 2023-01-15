@@ -7,6 +7,10 @@
         color: white;
     }
 
+    .sidebar {
+        background-color: rgb(50,50,50);
+    }
+
     main {
         background-color: rgb(35, 35, 35);
     }
@@ -17,6 +21,10 @@
     body {
         background: rgb(220,220,220);
         color: black;
+    }
+
+    .sidebar {
+        background-color: rgb(180,180,180);
     }
 
     main {

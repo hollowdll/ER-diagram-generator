@@ -205,3 +205,18 @@ window.menuItemFunctionality.onResetDiagram(() => {
     diagramName.innerText = DefaultTextValue.DiagramName;
 })
 
+// Toggle details
+window.menuItemFunctionality.onToggleDetails(() => {
+    const detailArea = document.getElementById("detail-area") as HTMLDivElement;
+    const style = detailArea.style;
+
+    style.display = style.display === "none" ? "block" : "none";
+})
+
+// Toggle relationships
+window.menuItemFunctionality.onToggleRelationships(() => {
+    const relationshipArea = document.getElementById("relationship-area") as HTMLDivElement;
+    const style = relationshipArea.style;
+
+    style.display = style.display === "none" ? "block" : "none";
+})

@@ -22,6 +22,8 @@ export namespace PreloadProcess {
         onCreateDiagramFromJSON: (callback: () => void) => void,
         onResetDiagram: (callback: () => void) => void,
         onShowRenderArea: (callback: () => void) => void,
+        onToggleDetails: (callback: () => void) => void,
+        onToggleRelationships: (callback: () => void) => void,
     }
 }
   

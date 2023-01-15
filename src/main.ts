@@ -6,6 +6,10 @@ import path from "path";
 import { diagramFile } from "./diagram";
 import { createMainWindowMenu } from "./menu";
 
+// If app is in debug mode
+// CHANGE THIS TO FALSE IN RELEASE MODE.
+export const isAppDebugMode = true;
+
 // Main window of the app
 const createMainWindow = (): BrowserWindow => {
   const win = new BrowserWindow({
@@ -21,6 +25,7 @@ const createMainWindow = (): BrowserWindow => {
     show: false,
   });
 
+  // Set window menu
   win.setMenu(createMainWindowMenu());
 
   win.once('ready-to-show', () => {
@@ -35,7 +40,9 @@ const createMainWindow = (): BrowserWindow => {
   win.loadFile("./src/html/index.html");
 
   // In development mode
-  win.webContents.openDevTools();
+  if (isAppDebugMode) {
+    win.webContents.openDevTools();
+  }
 
   return win;
 }
@@ -147,6 +154,11 @@ app.whenReady().then(() => {
 
   // Create main window first so it will always get ID=1
   createMainWindow();
+
+  // IN DEBUG MODE
+  if (isAppDebugMode) {
+    nativeTheme.themeSource = "dark";
+  }
 
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
