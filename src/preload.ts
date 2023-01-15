@@ -28,6 +28,4 @@ contextBridge.exposeInMainWorld("menuItemFunctionality", {
   onCreateDiagramFromJSON: (callback: () => void) => ipcRenderer.on("create-new-diagram:generate-from-json", callback),
   onResetDiagram: (callback: () => void) => ipcRenderer.on("diagram-options:reset-current-diagram", callback),
   onShowRenderArea: (callback: () => void) => ipcRenderer.on("diagram-options:show-render-area", callback),
-  onToggleDetails: (callback: () => void) => ipcRenderer.on("diagram-options:toggle-details", callback),
-  onToggleRelationships: (callback: () => void) => ipcRenderer.on("diagram-options:toggle-relationships", callback),
 })

@@ -22,6 +22,7 @@ namespace EntityDiagramTypes {
     export type EntityField = [boolean, string, string, string]
 }
 
+
 // Generate diagram entity name row
 const generateDiagramEntityNameRow = (name: string): string => {
     const row = `
@@ -114,6 +115,7 @@ const generateDiagramEntity = (
 const generateDiagramDetails = (details: DiagramStructure.DiagramDetail[]) => {
     const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
 
+    // Create a new table row for each detail
     for (const detail of details) {
         const row = document.createElement("tr");
         row.className = "sidebar-table-tr";
@@ -139,8 +141,6 @@ const toggleSidebar = (visible: boolean) => {
     const diagramArea = document.querySelector(".diagram-area") as HTMLDivElement;
     const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
 
-    sidebar.style.display = visible === true ? "block" : "none";
-
     if (visible) {
         sidebar.style.display = "block";
         diagramArea.style.marginLeft = DiagramAreaDetail.DiagramAreaMarginLeft;
@@ -148,7 +148,7 @@ const toggleSidebar = (visible: boolean) => {
         diagramName.style.marginLeft = DiagramAreaDetail.DiagramNameMarginLeft;
 
     } else {
-        sidebar.style.display = "false";
+        sidebar.style.display = "none";
         diagramArea.style.marginLeft = "0px";
         diagramName.style.textAlign = "center";
         diagramName.style.marginLeft = "0px";
@@ -222,7 +222,8 @@ window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
 // Show render area
 window.menuItemFunctionality.onShowRenderArea(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    renderArea.style["border"] = "1px solid green";
+    
+    renderArea.style.border = DiagramAreaDetail.RenderAreaBorder;
 })
 
 
@@ -272,16 +273,4 @@ window.menuItemFunctionality.onResetDiagram(() => {
 
     // Hide sidebar
     toggleSidebar(false);
-})
-
-
-// Toggle details
-window.menuItemFunctionality.onToggleDetails(() => {
-    
-})
-
-
-// Toggle relationships
-window.menuItemFunctionality.onToggleRelationships(() => {
-    
 })

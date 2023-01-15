@@ -1,9 +1,11 @@
 /* Styles for diagram area */
 
+/* Check renderer.ts for details */
+/*
 .diagram-area {
-    /* margin-left: 300px; */
-    overflow: auto;
+    margin-left: 300px; 
 }
+*/
 
 #diagram-name {
     /* margin-left: 60px; */

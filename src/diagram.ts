@@ -23,6 +23,7 @@ export namespace diagramFile {
         && "relationships" in data && typeof data.relationships === "object"
       ) {
         console.log("Data Root: OK");
+        
         // settings
         if (data.settings && data.customization
           && data.details && data.entities && data.relationships

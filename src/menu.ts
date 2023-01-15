@@ -106,10 +106,12 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
+            /* NO IMPLEMENTATION YET
             {
               label: "Use Editor",
 
             }
+            */
           ]
         },
         {
@@ -123,10 +125,12 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
+            /* NO IMPLEMENTATION YET
             {
               label: "Use Editor",
             
             }
+            */
           ]
         },
         {
@@ -145,22 +149,6 @@ export const createMainWindowMenu = (): Electron.Menu => {
               click: (menuItem, focusedWindow, event) => {
                 if (focusedWindow !== undefined) {
                   focusedWindow.webContents.send("diagram-options:show-render-area");
-                }
-              }
-            },
-            {
-              label: "Toggle Details",
-              click: (menuItem, focusedWindow, event) => {
-                if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("diagram-options:toggle-details");
-                }
-              }
-            },
-            {
-              label: "Toggle Relationships",
-              click: (menuItem, focusedWindow, event) => {
-                if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("diagram-options:toggle-relationships");
                 }
               }
             },
