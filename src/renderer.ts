@@ -12,7 +12,7 @@ enum DefaultTextValue {
 
 // Diagram's render area
 enum DiagramAreaDetail {
-    DiagramAreaMarginLeft = "300px",
+    DiagramAreaMarginLeft = "250px",
     DiagramNameMarginLeft = "60px",
     RenderAreaBorder = "1px solid green",
 }
@@ -115,7 +115,7 @@ const generateDiagramEntity = (
 const generateDiagramDetails = (details: DiagramStructure.DiagramDetail[]) => {
     const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
 
-    // Create a new table row for each detail
+    // Create a new table row for each item
     for (const detail of details) {
         const row = document.createElement("tr");
         row.className = "sidebar-table-tr";
@@ -130,8 +130,19 @@ const generateDiagramDetails = (details: DiagramStructure.DiagramDetail[]) => {
 
 
 // Generate diagram relationships that will be rendered
-const generateDiagramRelationships = () => {
+const generateDiagramRelationships = (relationships: DiagramStructure.DiagramRelationship[]) => {
+    const relationshipTableBody = document.getElementById("relationship-area-table-body") as HTMLTableSectionElement;
 
+    // Create a new table row for each item
+    for (const relationship of relationships) {
+        const row = document.createElement("tr");
+        row.className = "sidebar-table-tr";
+        row.innerHTML = `
+            <td>${relationship.relationship}</td>
+        `;
+
+        relationshipTableBody.appendChild(row);
+    }
 }
 
 
@@ -187,6 +198,7 @@ const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
     generateDiagramDetails(data.details);
 
     // Set relationships
+    generateDiagramRelationships(data.relationships);
 
     // Show sidebar
     toggleSidebar(true);

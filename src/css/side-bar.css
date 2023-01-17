@@ -3,7 +3,7 @@
 .sidebar {
     position: fixed;
     top: 0;
-    width: 300px;
+    width: 250px;
     height: 100%;
     display: none;
 }
@@ -23,18 +23,22 @@
     bottom: 0;
     background-color: rgb(50,50,50);
     overflow: auto;
+    border-top: 1px solid white;
 }
 
 .sidebar-table {
-    width: 100%;
+    margin: 5px;
 }
 
 .sidebar-table, .sidebar-table-tr > th, .sidebar-table-tr > td {
     border-collapse: collapse;
-    border: 1px solid white;
     padding: 5px;
 }
 
 .sidebar-table-tr > td {
     width: 50%;
+}
+
+.sidebar-table-tr > th {
+    padding: 15px
 }
