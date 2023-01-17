@@ -12,7 +12,7 @@
 
 .diagram-entity > th, td {
     /* (For testing) border: 1px solid black; */
-    padding: 6px;
+    padding: 8px;
 }
 
 .entity-name-row {

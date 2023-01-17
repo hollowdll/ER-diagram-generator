@@ -42,14 +42,9 @@ declare global {
                 diagramName: string,
                 requiredOptionOutput: string
             },
-            customization: {
-                theme: string
-            },
             details: DiagramDetail[],
             entities: DiagramEntity[],
-            relationships: {
-        
-            }
+            relationships: DiagramRelationship[]
         }
         
         interface DiagramDetail {
@@ -59,15 +54,18 @@ declare global {
         
         interface DiagramEntity {
             name: string,
-            id: number,
-            fields: IDiagramEntityField[]
+            fields: DiagramEntityField[]
         }
         
         interface DiagramEntityField {
             name: string,
-            isPK: boolean,
+            keyType: string,
             dataType: string,
             required: boolean
+        }
+
+        interface DiagramRelationship {
+            relationship: string
         }
     }
 }

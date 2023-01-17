@@ -19,7 +19,7 @@ enum DiagramAreaDetail {
 
 // Entity diagram types only used in renderer process
 namespace EntityDiagramTypes {
-    export type EntityField = [boolean, string, string, string]
+    export type EntityField = [string, string, string, string]
 }
 
 
@@ -40,13 +40,13 @@ const generateDiagramEntityNameRow = (name: string): string => {
 
 // Generate diagram entity field row
 const generateDiagramEntityFieldRow =
-    (isPrimaryKey: boolean, name: string, dataType: string, required: string): string => {
-    // Check if is primary key
-    const keyValue = isPrimaryKey === true ? "PK" : "";
+    (keyType: string, name: string, dataType: string, required: string): string => {
+
+    if (keyType !== "PK" && keyType !== "FK") keyType = "";
     
     const row = `
         <tr class="entity-field-row">
-            <td class="entity-field-key">${keyValue}</td>
+            <td class="entity-field-key">${keyType}</td>
             <td class="entity-field-name"><span>${name}</span></td>
             <td class="entity-field-datatype"><span>${dataType}</span></td>
             <td class="entity-field-required">${required}</td>
@@ -69,9 +69,9 @@ const generateTestEntity = () => {
     holder.className = "diagram-entity";
 
     const nameRow = generateDiagramEntityNameRow("Person");
-    const fieldRow1 = generateDiagramEntityFieldRow(true, "person_id", "serial", "NN");
-    const fieldRow2 = generateDiagramEntityFieldRow(false, "name", "text", "NN");
-    const fieldRow3 = generateDiagramEntityFieldRow(false, "age", "integer", "NN");
+    const fieldRow1 = generateDiagramEntityFieldRow("PK", "person_id", "serial", "NN");
+    const fieldRow2 = generateDiagramEntityFieldRow("", "name", "text", "NN");
+    const fieldRow3 = generateDiagramEntityFieldRow("", "age", "integer", "NN");
 
     holder.innerHTML += nameRow + fieldRow1 + fieldRow2 + fieldRow3;
 
@@ -174,7 +174,7 @@ const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
             );
 
             const fieldData: EntityDiagramTypes.EntityField = [
-                field.isPK, field.name, field.dataType, fieldRequiredOptionOutput
+                field.keyType, field.name, field.dataType, fieldRequiredOptionOutput
             ];
 
             entityFieldList.push(fieldData);
