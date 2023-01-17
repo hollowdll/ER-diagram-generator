@@ -3,9 +3,6 @@
         "diagramName": "Test Diagram 1",
         "requiredOptionOutput": "NN"
     },
-    "customization": {
-        "theme": "dark"
-    },
     "details": [
         {
             "detail": "PK",
@@ -31,29 +28,28 @@
     "entities": [
         {
             "name": "Person",
-            "id": 1,
             "fields": [
                 {
                     "name": "person_id",
-                    "isPK": true,
+                    "keyType": "PK",
                     "dataType": "serial",
                     "required": true
                 },
                 {
                     "name": "first_name",
-                    "isPK": false,
+                    "keyType": "",
                     "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "last_name",
-                    "isPK": false,
+                    "keyType": "",
                     "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "age",
-                    "isPK": false,
+                    "keyType": "",
                     "dataType": "integer",
                     "required": true
                 }
@@ -61,30 +57,40 @@
         },
         {
             "name": "Book",
-            "id": 2,
             "fields": [
                 {
                     "name": "isbn",
-                    "isPK": true,
+                    "keyType": "PK",
                     "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "book_name",
-                    "isPK": false,
+                    "keyType": "",
                     "dataType": "text",
                     "required": true
                 },
                 {
                     "name": "page_count",
-                    "isPK": false,
+                    "keyType": "",
                     "dataType": "integer",
                     "required": true
+                },
+                {
+                    "name": "owner",
+                    "keyType": "FK",
+                    "dataType": "integer",
+                    "required": false
                 }
             ]
         }
     ],
-    "relationships": {
-
-    }
+    "relationships": [
+        {
+            "relationship": "(PK) Person.person_id -> (FK) Book.owner"
+        },
+        {
+            "relationship": "(PK) Test.test -> (FK) Test2.test"
+        }
+    ]
 }
