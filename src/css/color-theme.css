@@ -20,7 +20,11 @@
     }
 
     .entity-name-row {
-        background-color: rgb(90, 90, 170);
+        background-color: rgb(90, 90, 70);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+    .sidebar-table-head-tr {
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 }
@@ -45,6 +49,6 @@
     }
 
     .entity-name-row {
-        background-color: rgb(90, 130, 170);
+        background-color: rgb(90, 150, 170);
     }
 }

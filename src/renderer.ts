@@ -7,7 +7,7 @@
 
 // Default text values
 enum DefaultTextValue {
-    DiagramName = "Entity Relationship Diagram Generator Prototype",
+    DiagramName = "Entity Relationship Diagram Generator",
 }
 
 // Diagram's render area
