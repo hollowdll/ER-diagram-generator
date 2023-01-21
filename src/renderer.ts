@@ -12,7 +12,7 @@ enum DefaultTextValue {
 
 // Diagram's render area
 enum DiagramAreaDetail {
-    DiagramAreaMarginLeft = "250px",
+    DiagramAreaMarginLeft = "280px",
     DiagramNameMarginLeft = "60px",
     RenderAreaBorder = "1px solid green",
 }
@@ -105,7 +105,6 @@ const generateDiagramEntity = (
         holder.innerHTML += fieldRow;
     }
 
-    // Render
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
     renderArea.appendChild(holder);
 }
@@ -167,8 +166,48 @@ const toggleSidebar = (visible: boolean) => {
 }
 
 
+// Reset current diagram
+const resetDiagram = () => {
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
+    const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
+    const relationshipTableBody = document.getElementById("relationship-area-table-body") as HTMLTableSectionElement;
+    let elementCount = 0;
+
+    // Blazingly fast (check if firstChild exists, not lastChild)
+    // Remove all HTML elements and nodes from render area
+    while (renderArea.firstChild) {
+        renderArea.removeChild(renderArea.lastChild as Node);
+        elementCount++;
+    }
+
+    if (elementCount > 0) {
+        console.log(`Removed ${elementCount} diagram ${elementCount === 1 ? "table" : "tables"}.`);
+    }
+
+    // Reset diagram name to default
+    diagramName.innerText = DefaultTextValue.DiagramName;
+
+    // Remove details
+    while (detailTableBody.firstChild) {
+        detailTableBody.removeChild(detailTableBody.lastChild as Node);
+    }
+
+    // Remove relationships
+    while (relationshipTableBody.firstChild) {
+        relationshipTableBody.removeChild(relationshipTableBody.lastChild as Node);
+    }
+
+    // Hide sidebar
+    toggleSidebar(false);
+}
+
+
 // Generate diagram from object data
 const generateDiagramFromData = (data: DiagramStructure.Diagram) => {
+    // Reset current diagram
+    resetDiagram();
+
     // Set settings
     const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
     diagramName.innerText = data.settings.diagramName;
@@ -245,44 +284,7 @@ window.menuItemFunctionality.onCreateTestEntity(() => {
 })
 
 
-// Create new entity with editor
-document.getElementById("create-entity-button")?.addEventListener("click", async () => {
-    await window.openWindow.createEntity();
-});
-
-
 // Reset current diagram
 window.menuItemFunctionality.onResetDiagram(() => {
-    const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
-    const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
-    const relationshipTableBody = document.getElementById("relationship-area-table-body") as HTMLTableSectionElement;
-    let elementCount = 0;
-
-    // Blazingly fast (check if firstChild exists, not lastChild)
-    // Remove all HTML elements and nodes from render area
-    while (renderArea.firstChild) {
-        renderArea.removeChild(renderArea.lastChild as Node);
-        elementCount++;
-    }
-
-    if (elementCount > 0) {
-        console.log(`Removed ${elementCount} diagram ${elementCount === 1 ? "table" : "tables"}.`);
-    }
-
-    // Reset diagram name to default
-    diagramName.innerText = DefaultTextValue.DiagramName;
-
-    // Remove details
-    while (detailTableBody.firstChild) {
-        detailTableBody.removeChild(detailTableBody.lastChild as Node);
-    }
-
-    // Remove relationships
-    while (relationshipTableBody.firstChild) {
-        relationshipTableBody.removeChild(relationshipTableBody.lastChild as Node);
-    }
-
-    // Hide sidebar
-    toggleSidebar(false);
+    resetDiagram();
 })
