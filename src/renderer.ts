@@ -92,11 +92,9 @@ const generateDiagramEntity = (
     const holder = document.createElement("table");
     holder.className = "diagram-entity";
 
-    // Name
     const nameRow = generateDiagramEntityNameRow(entityName);
     holder.innerHTML += nameRow;
 
-    // Fields
     for (const field of entityFieldList) {
         const fieldRow = generateDiagramEntityFieldRow(
             field[0], field[1], field[2], field[3]
@@ -250,7 +248,7 @@ const openJSONFileAndGenerateDiagram = async () => {
     // Returns diagram data or undefined if something went wrong
     const responseData: DiagramStructure.Diagram | undefined
         = await window.systemDialog.openJSONFile();
-    console.log(responseData);
+    // console.log(responseData);
 
     // Check if returned data is valid diagram data
     // Returned data is always of type IDiagram | undefined

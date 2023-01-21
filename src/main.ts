@@ -13,7 +13,7 @@ export const isAppDebugMode = true;
 // Main window of the app
 const createMainWindow = (): BrowserWindow => {
   const win = new BrowserWindow({
-    title: "ER diagram generator",
+    title: "Entity Relationship Diagram Generator",
     width: 800,
     height: 600,
     minWidth: 800,
