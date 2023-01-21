@@ -12,10 +12,6 @@ export namespace PreloadProcess {
         openJSONFile: () => Promise<DiagramStructure.Diagram | undefined>,
     }
     
-    export interface OpenWindow {
-        createEntity: () => Promise<void>,
-    }
-    
     export interface MenuItemFunctionality {
         onCreateTestEntity: (callback: () => void) => void,
         onCreateDiagramFromJSON: (callback: () => void) => void,
@@ -30,7 +26,6 @@ declare global {
     interface Window {
         darkMode: PreloadProcess.DarkMode,
         systemDialog: PreloadProcess.SystemDialog,
-        openWindow: PreloadProcess.OpenWindow,
         menuItemFunctionality: PreloadProcess.MenuItemFunctionality,
     }
 

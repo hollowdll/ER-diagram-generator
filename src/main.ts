@@ -47,32 +47,6 @@ const createMainWindow = (): BrowserWindow => {
   return win;
 }
 
-// Window to create a new entity
-const createEntityCreationWindow = (mainWindow: BrowserWindow) => {
-  const win = new BrowserWindow({
-    title: "Create New Entity",
-    width: 600,
-    height: 500,
-    resizable: false,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      sandbox: true
-    },
-    show: false,
-    parent: mainWindow,
-    modal: true
-  });
-
-  win.once('ready-to-show', () => {
-    win.show()
-  });
-
-  // In production
-  // win.setMenuBarVisibility(false);
-
-  win.loadFile("./src/html/create-entity.html");
-}
-
 
 // Initialize Inter process communication channels
 // in main process
@@ -130,18 +104,6 @@ const initializeIpcChannels = () => {
     }
 
     return data;
-  })
-
-  // Create window to create a new diagram entity
-  ipcMain.handle("open-window:create-entity", () => {
-    // Get main window
-    const mainWindow = BrowserWindow.fromId(1);
-
-    if (mainWindow) {
-      createEntityCreationWindow(mainWindow);
-    } else {
-      dialog.showErrorBox("Error!", "Application main window was not found!");
-    }
   })
 }
 

@@ -182,6 +182,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
             {
               label: "Dark",
               type: "radio",
+              checked: (isAppDebugMode ? true : false),
               click: () => {
                 nativeTheme.themeSource = "dark";
               }
