@@ -278,6 +278,14 @@ window.menuItemFunctionality.onShowRenderArea(() => {
 })
 
 
+// Hide render area
+window.menuItemFunctionality.onHideRenderArea(() => {
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    
+    renderArea.style.border = "none";
+})
+
+
 // Generate new test entity
 window.menuItemFunctionality.onCreateTestEntity(() => {
     generateTestEntity();

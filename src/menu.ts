@@ -152,6 +152,14 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
+            {
+              label: "Hide Render Area",
+              click: (menuItem, focusedWindow, event) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:hide-render-area");
+                }
+              }
+            },
           ]
         },
       ]

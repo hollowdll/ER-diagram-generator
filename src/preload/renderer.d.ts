@@ -3,7 +3,6 @@
 
 export namespace PreloadProcess {
     export interface DarkMode {
-        toggle: () => Promise<void>,
         system: () => Promise<void>,
         toggleDark: () => Promise<void>,
         toggleLight: () => Promise<void>,
@@ -22,6 +21,7 @@ export namespace PreloadProcess {
         onCreateDiagramFromJSON: (callback: () => void) => void,
         onResetDiagram: (callback: () => void) => void,
         onShowRenderArea: (callback: () => void) => void,
+        onHideRenderArea: (callback: () => void) => void,
     }
 }
   
