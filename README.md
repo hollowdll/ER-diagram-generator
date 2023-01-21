@@ -33,7 +33,7 @@ npm start
 
 You can switch between light and dark mode in `Settings`
 
-![]()
+![Theme Color](./documentation/images/theme_color.JPG?raw=true)
 
 In `Diagram` > `Create New Diagram` you can generate a diagram from JSON file. This will open a file explorer on your system.
 
@@ -41,11 +41,11 @@ In `Diagram` > `Create New Diagram` you can generate a diagram from JSON file. T
 > 
 > Diagram file needs to have a specific structure in order to generate a diagram from it! Otherwise you will get in-app warnings/error messages.
 
-![]()
+![Generate From JSON](./documentation/images/generate_from_json.JPG?raw=true)
 
 In `Diagram` > `Options` you will find some extra features
 
-![]()
+![Options](./documentation/images/diagram_options.JPG?raw=true)
 
 
 # JSON file structure
