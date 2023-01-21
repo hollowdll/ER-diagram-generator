@@ -83,6 +83,47 @@
                     "required": false
                 }
             ]
+        },
+        {
+            "name": "ProgrammingLanguage",
+            "fields": [
+                {
+                    "name": "language_name",
+                    "keyType": "PK",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "type_system",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "source_file_extension",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "year_published",
+                    "keyType": "",
+                    "dataType": "integer",
+                    "required": false
+                },
+                {
+                    "name": "latest_release",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "latest_release_date",
+                    "keyType": "",
+                    "dataType": "timestamp",
+                    "required": true
+                }
+            ]
         }
     ],
     "relationships": [
