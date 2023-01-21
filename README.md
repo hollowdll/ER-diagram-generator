@@ -4,6 +4,7 @@ Generate Entity Relationship Diagrams by giving the application instructions in 
 This project is a cross-platform desktop application made with electron framework and TypeScript.
 
 > **Note**
+> 
 > Development focuses on Windows systems. Therefore the application might function differently on MacOS and Linux.
 
 # Tools and tech
@@ -16,9 +17,9 @@ This project is a cross-platform desktop application made with electron framewor
 # How to build
 To build this project, you need NodeJS on your system (LTS version recommended). NodeJS is a JavaScript runtime. [You can download it here.][NodeJS_download]
 
-Next clone this repository and open your terminal
+Next clone this repository and open your terminal.
 
-Run npm install in the directory root where package.json is, to install dependencies
+Run npm install in the directory root where `package.json` is to install dependencies
 ```
 npm install
 ```
@@ -29,7 +30,22 @@ npm start
 ```
 
 # How to use
-WIP
+
+You can switch between light and dark mode in `Settings`
+
+![]()
+
+In `Diagram` > `Create New Diagram` you can generate a diagram from JSON file. This will open a file explorer on your system.
+
+> **Note**
+> 
+> Diagram file needs to have a specific structure in order to generate a diagram from it! Otherwise you will get in-app warnings/error messages.
+
+![]()
+
+In `Diagram` > `Options` you will find some extra features
+
+![]()
 
 
 # JSON file structure
@@ -38,8 +54,9 @@ WIP
 
 # Development
 > **Note**
+> 
 > This project is in early development.
 
-Current version is 0.1.0.
+**Current version is 0.1.0.**
 
 [NodeJS_download]: https://nodejs.org/en/
