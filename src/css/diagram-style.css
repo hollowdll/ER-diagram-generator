@@ -1,7 +1,6 @@
 /* Entity Diagram styles */
 
 .diagram-entity {
-    background-color: rgb(60,60,60);
     border-collapse: collapse;
     margin-bottom: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
@@ -13,10 +12,6 @@
 .diagram-entity > th, td {
     /* (For testing) border: 1px solid black; */
     padding: 8px;
-}
-
-.entity-name-row {
-    background-color: rgb(90, 90, 170);
 }
 
 .entity-field-row > td {
