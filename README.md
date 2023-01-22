@@ -127,8 +127,17 @@ The diagram file needs to be a `JSON file` (.json extension). It also needs to h
 Check `diagram_files` folder for example diagram files.
 
 
-# Example Diagram
-WIP
+# Example Diagrams
+
+Here are how examples in `diagram_files` folder look like in the app after they have been generated.
+
+`test-diagram-1.json` in dark mode:
+
+![test-diagram-1.json in dark mode](./documentation/images/test_diagram_1_dark.JPG?raw=true)
+
+`structure.json` in light mode:
+
+![structure.json in light mode](./documentation/images/structure_light.JPG?raw=true)
 
 
 # Development
