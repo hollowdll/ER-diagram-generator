@@ -26,7 +26,7 @@
 }
 
 .sidebar-table {
-    margin: 10px;
+    width: 100%;
 }
 
 .sidebar-table, .sidebar-table-tr > th, .sidebar-table-tr > td {
@@ -36,6 +36,7 @@
 
 .sidebar-table-tr > td {
     width: 50%;
+    text-align: center;
 }
 
 .sidebar-table-tr > th {
