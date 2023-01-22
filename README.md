@@ -31,7 +31,7 @@ npm start
 
 # How to use
 
-You can switch between light and dark mode in `Settings`
+You can switch between light and dark mode in `Settings` > `Theme Color.`
 
 ![Theme Color](./documentation/images/theme_color.JPG?raw=true)
 
@@ -141,9 +141,8 @@ Here are how examples in `diagram_files` folder look like in the app after they 
 
 
 # Development
-> **Note**
-> 
-> This project is in early development.
+
+This project is in early development.
 
 **Current version is 0.1.0.**
 
