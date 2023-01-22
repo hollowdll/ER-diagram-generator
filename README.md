@@ -49,6 +49,78 @@ In `Diagram` > `Options` you will find some extra features
 
 
 # JSON file structure
+
+The diagram file needs to be a `JSON file` (.json extension). It also needs to have the following structure:
+```json
+{
+    "settings": {
+        "diagramName": "Some diagram",
+        "requiredOptionOutput": "NN"
+    },
+    "details": [
+        {
+            "detail": "NN",
+            "description": "Not Null"
+        }
+    ],
+    "entities": [
+        {
+            "name": "Example",
+            "fields": [
+                {
+                    "name": "example_field_1",
+                    "keyType": "PK",
+                    "dataType": "serial",
+                    "required": true
+                },
+                {
+                    "name": "example_field_2",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "example_field_3",
+                    "keyType": "FK",
+                    "dataType": "integer",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationship": "(PK) ExampleEntity.field_1 -> (FK) ExampleEntity2.field_4"
+        }
+    ]
+}
+```
+
+## Important
+
+`Key` names must be the same, but `values` you can modify how you like!
+
+`details`, `entities` and `relationships` can have several objects, but `settings` must be like above. Example above has only one object in each section.
+
+The application will give you warnings and errors, if your JSON file doesn't have the above structure.
+
+
+## Syntax
+
+`diagramName` is the name of the diagram
+
+`requiredOptionOutput` is what `required` option in entity fields will show in rendered diagram, if it is set to `true`.
+
+If `required` is set to `false` in entity fields, it won't show anything in rendered diagram.
+
+`keyType` can be PK (Primary Key), FK (Foreign Key) or nothing.
+
+## Examples
+
+Check `diagram_files` folder for example diagram files.
+
+
+# Example Diagram
 WIP
 
 
