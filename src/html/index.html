@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+
+    <link rel="stylesheet" href="../css/global-style.css">
+    <link rel="stylesheet" href="../css/color-theme.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/diagram-style.css">
+    <link rel="stylesheet" href="../css/side-bar.css">
+
+    <!-- You can also require other files to run in this process -->
+    <script defer src="../../dist/renderer.js"></script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="detail-area" id="detail-area">
+            <table class="sidebar-table">
+                <thead>
+                    <tr class="sidebar-table-tr sidebar-table-head-tr">
+                        <th colspan="2">Details</th>
+                    </tr>
+                </thead>
+                <tbody id="detail-area-table-body"></tbody>
+            </table>
+        </div>
+        <div class="relationship-area" id="relationship-area">
+            <table class="sidebar-table">
+                <thead>
+                    <tr class="sidebar-table-tr sidebar-table-head-tr">
+                        <th>Relationships</th>
+                    </tr>
+                </thead>
+                <tbody id="relationship-area-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <main class="diagram-area">
+        <h2 id="diagram-name">Entity Relationship Diagram Generator</h2>
+        <div class="render-area" id="render-area"></div>
+    </main>
+
+</body>
+</html>

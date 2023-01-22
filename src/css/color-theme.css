@@ -1,0 +1,54 @@
+/* Dark and Light mode */
+
+/* Dark */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: rgb(35,35,35);
+        color: white;
+    }
+
+    .sidebar {
+        background-color: rgb(50,50,50);
+    }
+
+    main {
+        background-color: rgb(35, 35, 35);
+    }
+
+    .diagram-entity {
+        background-color: rgb(60,60,60);
+    }
+
+    .entity-name-row {
+        background-color: rgb(90, 90, 70);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+    .sidebar-table-head-tr {
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+/* Light */
+@media (prefers-color-scheme: light) {
+    body {
+        background: rgb(220,220,220);
+        color: black;
+    }
+
+    .sidebar {
+        background-color: rgb(190,190,190);
+    }
+
+    main {
+        background-color: rgb(220,220,220);
+    }
+
+    .diagram-entity {
+        background-color: rgb(190,190,190);
+    }
+
+    .entity-name-row {
+        background-color: rgb(90, 150, 170);
+    }
+}

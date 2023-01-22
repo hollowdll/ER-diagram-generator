@@ -1,0 +1,137 @@
+{
+    "settings": {
+        "diagramName": "Test Diagram 1",
+        "requiredOptionOutput": "NN"
+    },
+    "details": [
+        {
+            "detail": "PK",
+            "description": "Primary Key"
+        },
+        {
+            "detail": "FK",
+            "description": "Foreign Key"
+        },
+        {
+            "detail": "NN",
+            "description": "Not Null"
+        },
+        {
+            "detail": "serial",
+            "description": "Automatic integer starting from 1"
+        },
+        {
+            "detail": "text",
+            "description": "String of characters"
+        }
+    ],
+    "entities": [
+        {
+            "name": "Person",
+            "fields": [
+                {
+                    "name": "person_id",
+                    "keyType": "PK",
+                    "dataType": "serial",
+                    "required": true
+                },
+                {
+                    "name": "first_name",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "last_name",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "age",
+                    "keyType": "",
+                    "dataType": "integer",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "name": "Book",
+            "fields": [
+                {
+                    "name": "isbn",
+                    "keyType": "PK",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "book_name",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "page_count",
+                    "keyType": "",
+                    "dataType": "integer",
+                    "required": true
+                },
+                {
+                    "name": "owner",
+                    "keyType": "FK",
+                    "dataType": "integer",
+                    "required": false
+                }
+            ]
+        },
+        {
+            "name": "ProgrammingLanguage",
+            "fields": [
+                {
+                    "name": "language_name",
+                    "keyType": "PK",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "type_system",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "source_file_extension",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "year_published",
+                    "keyType": "",
+                    "dataType": "integer",
+                    "required": false
+                },
+                {
+                    "name": "latest_release",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "latest_release_date",
+                    "keyType": "",
+                    "dataType": "timestamp",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationship": "(FK) Book.owner << (PK) Person.person_id"
+        },
+        {
+            "relationship": "(FK) Test2.test << (PK) Test.test"
+        }
+    ]
+}
