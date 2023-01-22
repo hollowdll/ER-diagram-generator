@@ -1,4 +1,5 @@
 # ER-diagram-generator
+
 Generate Entity Relationship Diagrams by giving the application instructions in a JSON file.
 
 This project is a cross-platform desktop application made with electron framework and TypeScript.
