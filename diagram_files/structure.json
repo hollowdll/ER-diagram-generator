@@ -1,0 +1,42 @@
+{
+    "settings": {
+        "diagramName": "Some diagram",
+        "requiredOptionOutput": "NN"
+    },
+    "details": [
+        {
+            "detail": "NN",
+            "description": "Not Null"
+        }
+    ],
+    "entities": [
+        {
+            "name": "Example",
+            "fields": [
+                {
+                    "name": "example_field_1",
+                    "keyType": "PK",
+                    "dataType": "serial",
+                    "required": true
+                },
+                {
+                    "name": "example_field_2",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "example_field_3",
+                    "keyType": "FK",
+                    "dataType": "integer",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationship": "(PK) ExampleEntity.field_1 -> (FK) ExampleEntity2.field_4"
+        }
+    ]
+}
