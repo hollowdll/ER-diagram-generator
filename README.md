@@ -90,7 +90,7 @@ The diagram file needs to be a `JSON file` (.json extension). It also needs to h
     ],
     "relationships": [
         {
-            "relationship": "(PK) ExampleEntity.field_1 -> (FK) ExampleEntity2.field_4"
+            "relationship": "(FK) ExampleEntity2.field_4 << (PK) ExampleEntity.field_1"
         }
     ]
 }
@@ -102,7 +102,9 @@ The diagram file needs to be a `JSON file` (.json extension). It also needs to h
 
 `details`, `entities` and `relationships` can have several objects, but `settings` must be like above. Example above has only one object in each section.
 
-The application will give you warnings and errors, if your JSON file doesn't have the above structure.
+> **Warning**
+> 
+> When you try to generate a diagram, the application will give you warnings and errors if your JSON file doesn't have the above structure.
 
 
 ## Syntax
@@ -111,9 +113,14 @@ The application will give you warnings and errors, if your JSON file doesn't hav
 
 `requiredOptionOutput` is what `required` option in entity fields will show in rendered diagram, if it is set to `true`.
 
-If `required` is set to `false` in entity fields, it won't show anything in rendered diagram.
-
 `keyType` can be PK (Primary Key), FK (Foreign Key) or nothing.
+
+`relationship` values can be anything. Above is just one example.
+
+> **Note**
+> 
+> If `required` is set to `false` in entity fields, it won't show anything in rendered diagram.
+
 
 ## Examples
 

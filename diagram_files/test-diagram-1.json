@@ -128,10 +128,10 @@
     ],
     "relationships": [
         {
-            "relationship": "(PK) Person.person_id -> (FK) Book.owner"
+            "relationship": "(FK) Book.owner << (PK) Person.person_id"
         },
         {
-            "relationship": "(PK) Test.test -> (FK) Test2.test"
+            "relationship": "(FK) Test2.test << (PK) Test.test"
         }
     ]
 }

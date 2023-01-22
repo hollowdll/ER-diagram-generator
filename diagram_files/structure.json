@@ -36,7 +36,7 @@
     ],
     "relationships": [
         {
-            "relationship": "(PK) ExampleEntity.field_1 -> (FK) ExampleEntity2.field_4"
+            "relationship": "(FK) ExampleEntity2.field_4 << (PK) ExampleEntity.field_1"
         }
     ]
 }
