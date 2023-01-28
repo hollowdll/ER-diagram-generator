@@ -13,10 +13,18 @@ const applyColors = async (colors: DiagramItemColors) => {
 }
 
 const getColorsToApply = () => {
-    const diagramNameColor = document.getElementById("diagram-name-color") as HTMLInputElement;
-    const entityNameBackgroundColor = document.getElementById("entity-name-background-color") as HTMLInputElement;
-    const entityNameColor = document.getElementById("entity-name-color") as HTMLInputElement;
-    const entityFieldColor = document.getElementById("entity-field-color") as HTMLInputElement;
+    const diagramNameColor = document.getElementById(
+        "diagram-name-color"
+    ) as HTMLInputElement;
+    const entityNameBackgroundColor = document.getElementById(
+        "entity-name-background-color"
+    ) as HTMLInputElement;
+    const entityNameColor = document.getElementById(
+        "entity-name-color"
+    ) as HTMLInputElement;
+    const entityFieldColor = document.getElementById(
+        "entity-field-color"
+    ) as HTMLInputElement;
 
     const colors: DiagramItemColors = {
         diagramName: diagramNameColor.value,
@@ -28,12 +36,14 @@ const getColorsToApply = () => {
     return colors;
 }
 
+// Apply changes
 document.getElementById("apply-changes-button")?.addEventListener("mouseup", () => {
     const colors = getColorsToApply();
     applyColors(colors);
     window.close();
 })
 
+// Cancel
 document.getElementById("cancel-button")?.addEventListener("mouseup", () => {
     window.close();
 })

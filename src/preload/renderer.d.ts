@@ -22,7 +22,10 @@ export namespace PreloadProcess {
 
     export interface DiagramCustomizaion {
         applyColors: (colors: DiagramItemColors) => Promise<void>,
-        onApplyColors: (callback: (colors: DiagramItemColors) => void) => Promise<void>,
+        onApplyColors: (callback: (
+            event: Electron.IpcRendererEvent,
+            colors: DiagramItemColors
+        ) => void) => Promise<void>,
     }
 }
   

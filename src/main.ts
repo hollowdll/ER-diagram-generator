@@ -42,9 +42,9 @@ const createMainWindow = (): BrowserWindow => {
 export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
   const win = new BrowserWindow({
     title: "Edit Diagram Colors",
-    width: 350,
+    width: 300,
     height: 400,
-    minWidth: 350,
+    minWidth: 300,
     minHeight: 400,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -53,8 +53,16 @@ export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
     show: false,
     parent: mainWindow,
     modal: true,
-    resizable: false,
+    resizable: false
   });
+
+  const mainWindowPosition = mainWindow.getPosition();
+  const mainWindowSize = mainWindow.getSize();
+  console.log(mainWindowSize);
+
+  win.setPosition(
+    mainWindowPosition[0], mainWindowPosition[1]
+  );
 
   if (!isAppDebugMode) {
     win.setMenu(null);
@@ -71,7 +79,7 @@ export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
 // Initialize Inter process communication channels
 const initializeIpcChannels = () => {
   // Toggle between light and dark mode
-  ipcMain.handle('dark-mode:toggle', (event, theme: string) => {
+  ipcMain.handle('dark-mode:toggle', (_event, theme: string) => {
     if (theme === "light") {
       nativeTheme.themeSource = "light";
     } else if (theme === "dark") {
@@ -125,8 +133,12 @@ const initializeIpcChannels = () => {
   })
 
   // Change diagram colors
-  ipcMain.handle("diagram-customization:apply-colors", (event, colors) => {
-    BrowserWindow.fromId(1)?.webContents.send("diagram-customization:apply-colors", colors);
+  ipcMain.handle("diagram-customization:apply-colors", (_event, colors) => {
+    const mainWindow = BrowserWindow.fromId(1);
+
+    if (mainWindow !== null) {
+      mainWindow.webContents.send("diagram-customization:apply-colors", colors);
+    }
   })
 }
 

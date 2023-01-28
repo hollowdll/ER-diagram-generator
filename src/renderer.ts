@@ -294,3 +294,35 @@ window.menuItemFunctionality.onCreateTestEntity(() => {
 window.menuItemFunctionality.onResetDiagram(() => {
     resetDiagram();
 })
+
+
+
+// Diagram customization
+
+// Change diagram colors
+window.diagramCustomization.onApplyColors((_event, colors) => {
+    console.log(colors);
+
+    const diagramName = document.querySelector("#diagram-name") as HTMLHeadingElement;
+    diagramName.style.color = colors.diagramName;
+
+    const entityNameRows = document.querySelectorAll(
+        ".entity-name-row"
+    ) as NodeListOf<HTMLTableRowElement>;
+
+    for (const node of entityNameRows) {
+        node.style.backgroundColor = colors.entityNameBackground;
+        node.style.color = colors.entityName;
+    }
+
+    const entityFieldRows = document.querySelectorAll(
+        ".entity-field-row"
+    ) as NodeListOf<HTMLTableRowElement>;
+
+    for (const node of entityFieldRows) {
+        const children = node.getElementsByTagName("td");
+        for (const childNode of children) {
+            childNode.style.color = colors.entityField;
+        }
+    }
+})
