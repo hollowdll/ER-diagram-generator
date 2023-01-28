@@ -42,10 +42,10 @@ const createMainWindow = (): BrowserWindow => {
 export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
   const win = new BrowserWindow({
     title: "Edit Diagram Colors",
-    width: 400,
-    height: 500,
-    minWidth: 400,
-    minHeight: 500,
+    width: 350,
+    height: 400,
+    minWidth: 350,
+    minHeight: 4000,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       sandbox: true
@@ -55,6 +55,10 @@ export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
     modal: true,
     resizable: false,
   });
+
+  if (!isAppDebugMode) {
+    win.setMenu(null);
+  }
 
   win.once('ready-to-show', () => {
     win.show()
