@@ -315,6 +315,14 @@ window.diagramCustomization.onApplyColors((_event, colors) => {
         node.style.color = colors.entityName;
     }
 
+    const diagramEntities = document.querySelectorAll(
+        ".diagram-entity"
+    ) as NodeListOf<HTMLTableElement>
+
+    for (const node of diagramEntities) {
+        node.style.backgroundColor = colors.entityBackground;
+    }
+
     const entityFieldRows = document.querySelectorAll(
         ".entity-field-row"
     ) as NodeListOf<HTMLTableRowElement>;

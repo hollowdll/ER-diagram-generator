@@ -4,9 +4,13 @@
     align-items: center;
 }
 
+p {
+    margin: 12px;
+}
+
 label {
     display: block;
-    width: 130px;
+    width: 150px;
     float: left;
 }
 

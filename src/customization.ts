@@ -3,13 +3,13 @@
 interface DiagramItemColors {
     diagramName: string,
     entityNameBackground: string,
+    entityBackground: string,
     entityName: string,
     entityField: string,
 }
 
 const applyColors = async (colors: DiagramItemColors) => {
     await window.diagramCustomization.applyColors(colors);
-
 }
 
 const getColorsToApply = () => {
@@ -18,6 +18,9 @@ const getColorsToApply = () => {
     ) as HTMLInputElement;
     const entityNameBackgroundColor = document.getElementById(
         "entity-name-background-color"
+    ) as HTMLInputElement;
+    const entityBackgroundColor = document.getElementById(
+        "entity-background-color"
     ) as HTMLInputElement;
     const entityNameColor = document.getElementById(
         "entity-name-color"
@@ -29,6 +32,7 @@ const getColorsToApply = () => {
     const colors: DiagramItemColors = {
         diagramName: diagramNameColor.value,
         entityNameBackground: entityNameBackgroundColor.value,
+        entityBackground: entityBackgroundColor.value,
         entityName: entityNameColor.value,
         entityField: entityFieldColor.value,
     }

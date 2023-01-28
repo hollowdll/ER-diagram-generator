@@ -57,11 +57,10 @@ export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
   });
 
   const mainWindowPosition = mainWindow.getPosition();
-  const mainWindowSize = mainWindow.getSize();
-  console.log(mainWindowSize);
 
   win.setPosition(
-    mainWindowPosition[0], mainWindowPosition[1]
+    mainWindowPosition[0],
+    mainWindowPosition[1]
   );
 
   if (!isAppDebugMode) {
