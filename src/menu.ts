@@ -1,7 +1,7 @@
 // This file contains native menus for application windows
 
 import { app, Menu, shell, nativeTheme } from "electron";
-import { isAppDebugMode } from "./main";
+import { isAppDebugMode, createCustomizationWindow } from "./main";
 
 // Create menu for main window
 export const createMainWindowMenu = (): Electron.Menu => {
@@ -100,7 +100,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
           submenu: [
             {
               label: "Generate From JSON",
-              click: (menuItem, focusedWindow, event) => {
+              click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
                   focusedWindow.webContents.send("create-new-diagram:generate-from-json");
                 }
@@ -119,7 +119,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
           submenu: [
             {
               label: "Test Entity",
-              click: (menuItem, focusedWindow, event) => {
+              click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
                   focusedWindow.webContents.send("create-new-entity:test-entity");
                 }
@@ -138,7 +138,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
           submenu: [
             {
               label: "Reset Current Diagram",
-              click: (menuItem, focusedWindow, event) => {
+              click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
                   focusedWindow.webContents.send("diagram-options:reset-current-diagram");
                 }
@@ -146,7 +146,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
             },
             {
               label: "Show Render Area",
-              click: (menuItem, focusedWindow, event) => {
+              click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
                   focusedWindow.webContents.send("diagram-options:show-render-area");
                 }
@@ -154,7 +154,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
             },
             {
               label: "Hide Render Area",
-              click: (menuItem, focusedWindow, event) => {
+              click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
                   focusedWindow.webContents.send("diagram-options:hide-render-area");
                 }
@@ -162,6 +162,19 @@ export const createMainWindowMenu = (): Electron.Menu => {
             },
           ]
         },
+        {
+          label: "Customization",
+          submenu: [
+            {
+              label: "Edit Diagram Colors",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  createCustomizationWindow(focusedWindow);
+                }
+              }
+            }
+          ]
+        }
       ]
     },
 
