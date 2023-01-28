@@ -19,6 +19,11 @@ export namespace PreloadProcess {
         onShowRenderArea: (callback: () => void) => void,
         onHideRenderArea: (callback: () => void) => void,
     }
+
+    export interface DiagramCustomizaion {
+        applyColors: (colors: DiagramItemColors) => Promise<void>,
+        onApplyColors: (callback: (colors: DiagramItemColors) => void) => Promise<void>,
+    }
 }
   
 declare global {
@@ -27,6 +32,7 @@ declare global {
         darkMode: PreloadProcess.DarkMode,
         systemDialog: PreloadProcess.SystemDialog,
         menuItemFunctionality: PreloadProcess.MenuItemFunctionality,
+        diagramCustomization: PreloadProcess.DiagramCustomizaion,
     }
 
     // Make this namespace available to renderer process

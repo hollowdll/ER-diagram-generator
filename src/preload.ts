@@ -24,3 +24,9 @@ contextBridge.exposeInMainWorld("menuItemFunctionality", {
   onShowRenderArea: (callback: () => void) => ipcRenderer.on("diagram-options:show-render-area", callback),
   onHideRenderArea: (callback: () => void) => ipcRenderer.on("diagram-options:hide-render-area", callback),
 })
+
+contextBridge.exposeInMainWorld("diagramCustomization", {
+  applyColors: (colors: DiagramItemColors) => ipcRenderer.invoke("diagram-customization:apply-colors", colors),
+  onApplyColors: (callback: (event: Electron.IpcRendererEvent, colors: DiagramItemColors) => void) =>
+                  ipcRenderer.on("diagram-customization:apply-colors", callback),
+})

@@ -9,34 +9,33 @@
     <link rel="stylesheet" href="../css/color-theme.css">
     <link rel="stylesheet" href="../css/customization.css">
 
-    
+    <script defer src="../../dist/customization.js"></script>
 </head>
 
 <body>
 
     <form id="customization">
         <p>
-            <label for="diagram-name">Diagram Name</label>
-            <input type="color" class="color-box" id="diagram-name" />
+            <label>Diagram Name</label>
+            <input type="color" class="color-box" id="diagram-name-color" />
         </p>
         <p>
             <label>Entity Name Background</label>
-            <input type="color" class="color-box" />
+            <input type="color" class="color-box" id="entity-name-background-color" />
         </p>
         <p>
             <label>Entity Name</label>
-            <input type="color" class="color-box" />
+            <input type="color" class="color-box" id="entity-name-color" />
         </p>
         <p>
             <label>Entity Field</label>
-            <input type="color" class="color-box" />
+            <input type="color" class="color-box" id="entity-field-color" />
         </p>
     </form>
     
     <footer id="bottom-buttons">
-        <button>OK</button>
-        <button>Apply Changes</button>
-        <button>Cancel</button>
+        <button id="apply-changes-button">Apply Colors</button>
+        <button id="cancel-button">Cancel</button>
     </footer>
     
 </body>

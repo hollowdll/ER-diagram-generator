@@ -45,7 +45,7 @@ export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
     width: 350,
     height: 400,
     minWidth: 350,
-    minHeight: 4000,
+    minHeight: 400,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       sandbox: true
@@ -122,6 +122,11 @@ const initializeIpcChannels = () => {
     }
 
     return data;
+  })
+
+  // Change diagram colors
+  ipcMain.handle("diagram-customization:apply-colors", (event, colors) => {
+    BrowserWindow.fromId(1)?.webContents.send("diagram-customization:apply-colors", colors);
   })
 }
 
