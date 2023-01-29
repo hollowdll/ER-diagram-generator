@@ -1,5 +1,6 @@
 {
   "name": "er-diagram-generator",
+  "productName": "ER-diagram-generator",
   "version": "0.1.0",
   "description": "Generate Entity Relationship Diagrams by giving the application instructions as a simple DDL script.",
   "main": "dist/main.js",

@@ -23,6 +23,7 @@ namespace EntityDiagramTypes {
 }
 
 
+
 // Generate diagram entity name row
 const generateDiagramEntityNameRow = (name: string): string => {
     const row = `
@@ -110,7 +111,9 @@ const generateDiagramEntity = (
 
 // Generate diagram details that will be rendered
 const generateDiagramDetails = (details: DiagramStructure.DiagramDetail[]) => {
-    const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
+    const detailTableBody = document.getElementById(
+        "detail-area-table-body"
+    ) as HTMLTableSectionElement;
 
     // Create a new table row for each item
     for (const detail of details) {
@@ -128,7 +131,9 @@ const generateDiagramDetails = (details: DiagramStructure.DiagramDetail[]) => {
 
 // Generate diagram relationships that will be rendered
 const generateDiagramRelationships = (relationships: DiagramStructure.DiagramRelationship[]) => {
-    const relationshipTableBody = document.getElementById("relationship-area-table-body") as HTMLTableSectionElement;
+    const relationshipTableBody = document.getElementById(
+        "relationship-area-table-body"
+    ) as HTMLTableSectionElement;
 
     // Create a new table row for each item
     for (const relationship of relationships) {
@@ -166,10 +171,18 @@ const toggleSidebar = (visible: boolean) => {
 
 // Reset current diagram
 const resetDiagram = () => {
-    const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    const diagramName = document.getElementById("diagram-name") as HTMLHeadingElement;
-    const detailTableBody = document.getElementById("detail-area-table-body") as HTMLTableSectionElement;
-    const relationshipTableBody = document.getElementById("relationship-area-table-body") as HTMLTableSectionElement;
+    const renderArea = document.getElementById(
+        "render-area"
+    ) as HTMLDivElement;
+    const diagramName = document.getElementById(
+        "diagram-name"
+    ) as HTMLHeadingElement;
+    const detailTableBody = document.getElementById(
+        "detail-area-table-body"
+    ) as HTMLTableSectionElement;
+    const relationshipTableBody = document.getElementById(
+        "relationship-area-table-body"
+    ) as HTMLTableSectionElement;
     let elementCount = 0;
 
     // Blazingly fast (check if firstChild exists, not lastChild)
@@ -293,4 +306,94 @@ window.menuItemFunctionality.onCreateTestEntity(() => {
 // Reset current diagram
 window.menuItemFunctionality.onResetDiagram(() => {
     resetDiagram();
+})
+
+
+
+// Diagram customization
+
+// Change diagram colors
+window.diagramCustomization.onApplyColors((_event, colors) => {
+    console.log(colors);
+
+    const diagramName = document.querySelector(
+        "#diagram-name"
+    ) as HTMLHeadingElement;
+    diagramName.style.color = colors.diagramName;
+
+    const entityNameRows = document.querySelectorAll(
+        ".entity-name-row"
+    ) as NodeListOf<HTMLTableRowElement>;
+
+    for (const node of entityNameRows) {
+        node.style.backgroundColor = colors.entityNameBackground;
+        node.style.color = colors.entityName;
+    }
+
+    const diagramEntities = document.querySelectorAll(
+        ".diagram-entity"
+    ) as NodeListOf<HTMLTableElement>
+
+    for (const node of diagramEntities) {
+        node.style.backgroundColor = colors.entityBackground;
+    }
+
+    const entityFieldRows = document.querySelectorAll(
+        ".entity-field-row"
+    ) as NodeListOf<HTMLTableRowElement>;
+
+    for (const node of entityFieldRows) {
+        const children = node.getElementsByTagName("td");
+        for (const childNode of children) {
+            childNode.style.color = colors.entityField;
+        }
+    }
+})
+
+
+// Get current diagram colors
+window.diagramCustomization.onGetCurrentColors((event, windowId) => {
+    const diagramName = document.querySelector(
+        "#diagram-name"
+    ) as HTMLHeadingElement;
+
+    const entityNameRow = document.querySelector(
+        ".entity-name-row"
+    ) as HTMLTableRowElement;
+
+    const diagramEntity = document.querySelector(
+        ".diagram-entity"
+    ) as HTMLTableElement;
+
+    const entityFieldRow = document.querySelector(
+        ".entity-field-row"
+    ) as HTMLTableRowElement;
+
+    let entityFieldRowData = null;
+    
+    if (entityFieldRow) {
+        entityFieldRowData = entityFieldRow.querySelector("td");
+    }
+
+    const colors: DiagramItemColors = {
+        diagramName: (
+            diagramName ? window.getComputedStyle(diagramName).color : "rgb(0,0,0)"
+        ),
+        entityNameBackground: (
+            entityNameRow ? window.getComputedStyle(entityNameRow).backgroundColor : "rgb(0,0,0)"
+        ),
+        entityBackground: (
+            diagramEntity ? window.getComputedStyle(diagramEntity).backgroundColor : "rgb(0,0,0)"
+        ),
+        entityName: (
+            entityNameRow ? window.getComputedStyle(entityNameRow).color : "rgb(0,0,0)"
+        ),
+        entityField: (
+            entityFieldRowData ? window.getComputedStyle(entityFieldRowData).color : "rgb(0,0,0)"
+        ),
+    }
+
+    console.log(colors);
+
+    event.sender.send("diagram-current-colors", colors, windowId);
 })

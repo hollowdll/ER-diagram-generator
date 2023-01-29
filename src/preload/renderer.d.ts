@@ -19,6 +19,22 @@ export namespace PreloadProcess {
         onShowRenderArea: (callback: () => void) => void,
         onHideRenderArea: (callback: () => void) => void,
     }
+
+    export interface DiagramCustomizaion {
+        applyColors: (colors: DiagramItemColors) => Promise<void>,
+        onApplyColors: (callback: (
+            event: Electron.IpcRendererEvent,
+            colors: DiagramItemColors
+        ) => void) => Promise<void>,
+        onGetCurrentColors: (callback: (
+            event: Electron.IpcRendererEvent,
+            windowId: number
+        ) => void) => void,
+        onSendCurrentColors: (callback: (
+            event: Electron.IpcRendererEvent,
+            colors: DiagramItemColors
+        ) => void) => void,
+    }
 }
   
 declare global {
@@ -27,6 +43,7 @@ declare global {
         darkMode: PreloadProcess.DarkMode,
         systemDialog: PreloadProcess.SystemDialog,
         menuItemFunctionality: PreloadProcess.MenuItemFunctionality,
+        diagramCustomization: PreloadProcess.DiagramCustomizaion,
     }
 
     // Make this namespace available to renderer process

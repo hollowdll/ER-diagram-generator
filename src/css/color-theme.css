@@ -4,7 +4,7 @@
 @media (prefers-color-scheme: dark) {
     body {
         background: rgb(35,35,35);
-        color: white;
+        color: rgb(255, 255, 255);
     }
 
     .sidebar {
@@ -16,7 +16,7 @@
     }
 
     .diagram-entity {
-        background-color: rgb(60,60,60);
+        background-color: rgb(60, 60, 60);
     }
 
     .entity-name-row {
@@ -33,7 +33,7 @@
 @media (prefers-color-scheme: light) {
     body {
         background: rgb(220,220,220);
-        color: black;
+        color: rgb(0, 0, 0);
     }
 
     .sidebar {
@@ -45,7 +45,7 @@
     }
 
     .diagram-entity {
-        background-color: rgb(190,190,190);
+        background-color: rgb(190, 190, 190);
     }
 
     .entity-name-row {
