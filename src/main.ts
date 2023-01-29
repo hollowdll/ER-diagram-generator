@@ -39,7 +39,7 @@ const createMainWindow = (): BrowserWindow => {
   return win;
 }
 
-export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
+export const createCustomizationWindow = async (mainWindow: BrowserWindow) => {
   const win = new BrowserWindow({
     title: "Edit Diagram Colors",
     width: 300,
@@ -71,7 +71,9 @@ export const createCustomizationWindow = (mainWindow: BrowserWindow) => {
     win.show()
   });
 
-  win.loadFile("./src/html/customization.html");
+  await win.loadFile("./src/html/customization.html");
+
+  mainWindow.webContents.send("diagram-customization:get-current-colors", win.id);
 }
 
 
@@ -86,10 +88,12 @@ const initializeIpcChannels = () => {
     }
   })
 
+
   // Reset to system theme
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system';
   })
+
 
   // Open system dialog and open a JSON file
   ipcMain.handle("system-dialog:open-json-file", async (): Promise<unknown> => {
@@ -131,13 +135,26 @@ const initializeIpcChannels = () => {
     return data;
   })
 
+
   // Change diagram colors
-  ipcMain.handle("diagram-customization:apply-colors", (_event, colors) => {
+  ipcMain.handle("diagram-customization:apply-colors", (
+    _event, colors: DiagramItemColors
+  ) => {
     const mainWindow = BrowserWindow.fromId(1);
 
     if (mainWindow !== null) {
       mainWindow.webContents.send("diagram-customization:apply-colors", colors);
     }
+  })
+
+
+  // Messages sent from renderer as reply
+
+  ipcMain.on("diagram-current-colors", (
+    _event, colors: DiagramItemColors, windowId: number
+  ) => {
+    console.log(colors);
+    console.log(windowId);
   })
 }
 

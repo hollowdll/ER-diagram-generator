@@ -40,6 +40,10 @@ const getColorsToApply = () => {
     return colors;
 }
 
+const getCurrentColors = () => {
+    
+}
+
 // Apply changes
 document.getElementById("apply-changes-button")?.addEventListener("mouseup", () => {
     const colors = getColorsToApply();

@@ -42,5 +42,16 @@ contextBridge.exposeInMainWorld("diagramCustomization", {
   onApplyColors: (callback: (
     event: Electron.IpcRendererEvent,
     colors: DiagramItemColors
-  ) => void) => ipcRenderer.on("diagram-customization:apply-colors", callback),
+  ) => void) => ipcRenderer.on(
+    "diagram-customization:apply-colors", callback
+  ),
+  getCurrentColors: (callback: (
+    event: Electron.IpcRendererEvent,
+    windowId: number
+  ) => void) => ipcRenderer.on(
+    "diagram-customization:get-current-colors", callback
+  ),
+  sendCurrentColors: () => ipcRenderer.invoke(
+    "diagram-customization:send-current-colors"
+  )
 })
