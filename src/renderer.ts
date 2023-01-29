@@ -352,7 +352,7 @@ window.diagramCustomization.onApplyColors((_event, colors) => {
 
 
 // Get current diagram colors
-window.diagramCustomization.getCurrentColors((event, windowId) => {
+window.diagramCustomization.onGetCurrentColors((event, windowId) => {
     const diagramName = document.querySelector(
         "#diagram-name"
     ) as HTMLHeadingElement;

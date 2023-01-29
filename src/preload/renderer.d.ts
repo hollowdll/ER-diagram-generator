@@ -26,9 +26,13 @@ export namespace PreloadProcess {
             event: Electron.IpcRendererEvent,
             colors: DiagramItemColors
         ) => void) => Promise<void>,
-        getCurrentColors: (callback: (
+        onGetCurrentColors: (callback: (
             event: Electron.IpcRendererEvent,
             windowId: number
+        ) => void) => void,
+        onSendCurrentColors: (callback: (
+            event: Electron.IpcRendererEvent,
+            colors: DiagramItemColors
         ) => void) => void,
     }
 }
