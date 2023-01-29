@@ -63,9 +63,9 @@ export const createCustomizationWindow = async (mainWindow: BrowserWindow) => {
     mainWindowPosition[1]
   );
 
-  if (isAppDebugMode) {
-    win.setMenu(null);
-  }
+  // No menu in release version
+  // Comment to debug the window
+  win.setMenu(null);
 
   win.once('ready-to-show', () => {
     win.show()

@@ -224,6 +224,9 @@ export const createMainWindowMenu = (): Electron.Menu => {
               "https://github.com/hollowdll/ER-diagram-generator#er-diagram-generator"
             );
           }
+        },
+        {
+          label: "Version 0.2.0"
         }
       ]
     }
