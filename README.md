@@ -12,7 +12,7 @@ This project is a cross-platform desktop application made with electron framewor
 - Electron framework
 - NodeJS backend with TypeScript
 - Frontend with TypeScript
-- UI with Vanilla HTML and CSS
+- UI with vanilla HTML and CSS
 - End to end type safety
 
 # How to build
@@ -20,7 +20,7 @@ To build this project, you need NodeJS on your system (LTS version recommended).
 
 Next clone this repository and open your terminal.
 
-Run npm install in the directory root where `package.json` is to install dependencies
+Install dependencies in the project root where `package.json` is
 ```
 npm install
 ```
@@ -141,10 +141,23 @@ Here are how examples in `diagram_files` folder look like in the app after they 
 ![structure.json in light mode](./documentation/images/structure_light.JPG?raw=true)
 
 
+# Customization
+
+**New feature!**
+
+To customize your diagram colors, open the editor in `Customization` > `Edit Diagram Colors`
+
+![customization](./documentation/images/customization.JPG?raw=true)
+
+You will get a window where you can change the colors
+
+![customization window](./documentation/images/customization_window.JPG?raw=true)
+
+
 # Development
 
 This project is in early development.
 
-**Current version is 0.1.0.**
+**Current version is 0.2.0.**
 
 [NodeJS_download]: https://nodejs.org/en/
