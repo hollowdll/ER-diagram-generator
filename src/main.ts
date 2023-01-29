@@ -63,7 +63,7 @@ export const createCustomizationWindow = async (mainWindow: BrowserWindow) => {
     mainWindowPosition[1]
   );
 
-  if (!isAppDebugMode) {
+  if (isAppDebugMode) {
     win.setMenu(null);
   }
 
@@ -73,9 +73,9 @@ export const createCustomizationWindow = async (mainWindow: BrowserWindow) => {
 
   await win.loadFile("./src/html/customization.html");
 
+  // Get current diagram colors from main window renderer
   mainWindow.webContents.send("diagram-customization:get-current-colors", win.id);
 }
-
 
 // Initialize Inter process communication channels
 const initializeIpcChannels = () => {
@@ -142,7 +142,7 @@ const initializeIpcChannels = () => {
   ) => {
     const mainWindow = BrowserWindow.fromId(1);
 
-    if (mainWindow !== null) {
+    if (mainWindow) {
       mainWindow.webContents.send("diagram-customization:apply-colors", colors);
     }
   })
@@ -150,11 +150,15 @@ const initializeIpcChannels = () => {
 
   // Messages sent from renderer as reply
 
+  // Send diagram current colors
   ipcMain.on("diagram-current-colors", (
     _event, colors: DiagramItemColors, windowId: number
   ) => {
-    console.log(colors);
-    console.log(windowId);
+    const targetWindow = BrowserWindow.fromId(windowId);
+    
+    if (targetWindow) {
+      targetWindow.webContents.send("diagram-customization:send-current-colors", colors);
+    }
   })
 }
 

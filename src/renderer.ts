@@ -377,19 +377,19 @@ window.diagramCustomization.onGetCurrentColors((event, windowId) => {
 
     const colors: DiagramItemColors = {
         diagramName: (
-            diagramName ? window.getComputedStyle(diagramName).color : "#000000"
+            diagramName ? window.getComputedStyle(diagramName).color : "rgb(0,0,0)"
         ),
         entityNameBackground: (
-            entityNameRow ? window.getComputedStyle(entityNameRow).backgroundColor : "#000000"
+            entityNameRow ? window.getComputedStyle(entityNameRow).backgroundColor : "rgb(0,0,0)"
         ),
         entityBackground: (
-            diagramEntity ? window.getComputedStyle(diagramEntity).backgroundColor : "#000000"
+            diagramEntity ? window.getComputedStyle(diagramEntity).backgroundColor : "rgb(0,0,0)"
         ),
         entityName: (
-            entityNameRow ? window.getComputedStyle(entityNameRow).color : "#000000"
+            entityNameRow ? window.getComputedStyle(entityNameRow).color : "rgb(0,0,0)"
         ),
         entityField: (
-            entityFieldRowData ? window.getComputedStyle(entityFieldRowData).color : "#000000"
+            entityFieldRowData ? window.getComputedStyle(entityFieldRowData).color : "rgb(0,0,0)"
         ),
     }
 
