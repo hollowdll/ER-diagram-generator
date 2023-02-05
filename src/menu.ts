@@ -144,6 +144,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
+            { type: 'separator' },
             {
               label: "Show Render Area",
               click: (_menuItem, focusedWindow) => {
@@ -160,12 +161,12 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
-            /*
+            { type: 'separator' },
             {
               label: "Show Details",
               click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("");
+                  focusedWindow.webContents.send("diagram-options:show-detail-area");
                 }
               }
             },
@@ -173,11 +174,11 @@ export const createMainWindowMenu = (): Electron.Menu => {
               label: "Hide Details",
               click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("");
+                  focusedWindow.webContents.send("diagram-options:hide-detail-area");
                 }
               }
             },
-            */
+            { type: 'separator' },
           ]
         },
         {

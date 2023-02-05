@@ -26,6 +26,7 @@
 }
 
 .sidebar-table {
+    display: table;
     width: 100%;
 }
 

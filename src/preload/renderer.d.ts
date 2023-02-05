@@ -18,6 +18,8 @@ export namespace PreloadProcess {
         onResetDiagram: (callback: () => void) => void,
         onShowRenderArea: (callback: () => void) => void,
         onHideRenderArea: (callback: () => void) => void,
+        onShowDetailArea: (callback: () => void) => void,
+        onHideDetailArea: (callback: () => void) => void,
     }
 
     export interface DiagramCustomizaion {

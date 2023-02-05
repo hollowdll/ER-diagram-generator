@@ -280,28 +280,36 @@ window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
     openJSONFileAndGenerateDiagram();
 })
 
-
 // Show render area
 window.menuItemFunctionality.onShowRenderArea(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    
     renderArea.style.border = DiagramAreaDetail.RenderAreaBorder;
 })
-
 
 // Hide render area
 window.menuItemFunctionality.onHideRenderArea(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    
     renderArea.style.border = "none";
 })
 
+// Show detail area
+window.menuItemFunctionality.onShowDetailArea(() => {
+    const detailArea = document.getElementById("detail-area") as HTMLDivElement;
+    const table = detailArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "table";
+})
+
+// Hide detail area
+window.menuItemFunctionality.onHideDetailArea(() => {
+    const detailArea = document.getElementById("detail-area") as HTMLDivElement;
+    const table = detailArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "none";
+})
 
 // Generate new test entity
 window.menuItemFunctionality.onCreateTestEntity(() => {
     generateTestEntity();
 })
-
 
 // Reset current diagram
 window.menuItemFunctionality.onResetDiagram(() => {

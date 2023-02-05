@@ -33,6 +33,12 @@ contextBridge.exposeInMainWorld("menuItemFunctionality", {
   onHideRenderArea: (callback: () => void) => ipcRenderer.on(
     "diagram-options:hide-render-area", callback
   ),
+  onShowDetailArea: (callback: () => void) => ipcRenderer.on(
+    "diagram-options:show-detail-area", callback
+  ),
+  onHideDetailArea: (callback: () => void) => ipcRenderer.on(
+    "diagram-options:hide-detail-area", callback
+  ),
 })
 
 contextBridge.exposeInMainWorld("diagramCustomization", {
