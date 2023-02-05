@@ -144,6 +144,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
+            { type: 'separator' },
             {
               label: "Show Render Area",
               click: (_menuItem, focusedWindow) => {
@@ -160,12 +161,12 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
-            /*
+            { type: 'separator' },
             {
               label: "Show Details",
               click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("");
+                  focusedWindow.webContents.send("diagram-options:show-details");
                 }
               }
             },
@@ -173,11 +174,27 @@ export const createMainWindowMenu = (): Electron.Menu => {
               label: "Hide Details",
               click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("");
+                  focusedWindow.webContents.send("diagram-options:hide-details");
                 }
               }
             },
-            */
+            { type: 'separator' },
+            {
+              label: "Show Relationships",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:show-relationships");
+                }
+              }
+            },
+            {
+              label: "Hide Relationships",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:hide-relationships");
+                }
+              }
+            },
           ]
         },
         {
@@ -244,7 +261,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
           }
         },
         {
-          label: "Version 0.2.1"
+          label: "Version 0.3.0"
         }
       ]
     }

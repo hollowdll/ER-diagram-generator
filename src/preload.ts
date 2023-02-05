@@ -33,6 +33,18 @@ contextBridge.exposeInMainWorld("menuItemFunctionality", {
   onHideRenderArea: (callback: () => void) => ipcRenderer.on(
     "diagram-options:hide-render-area", callback
   ),
+  onShowDetails: (callback: () => void) => ipcRenderer.on(
+    "diagram-options:show-details", callback
+  ),
+  onHideDetails: (callback: () => void) => ipcRenderer.on(
+    "diagram-options:hide-details", callback
+  ),
+  onShowRelationships: (callback: () => void) => ipcRenderer.on(
+    "diagram-options:show-relationships", callback
+  ),
+  onHideRelationships: (callback: () => void) => ipcRenderer.on(
+    "diagram-options:hide-relationships", callback
+  ),
 })
 
 contextBridge.exposeInMainWorld("diagramCustomization", {

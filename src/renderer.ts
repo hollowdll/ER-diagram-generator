@@ -280,32 +280,54 @@ window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
     openJSONFileAndGenerateDiagram();
 })
 
-
-// Show render area
-window.menuItemFunctionality.onShowRenderArea(() => {
-    const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    
-    renderArea.style.border = DiagramAreaDetail.RenderAreaBorder;
-})
-
-
-// Hide render area
-window.menuItemFunctionality.onHideRenderArea(() => {
-    const renderArea = document.getElementById("render-area") as HTMLDivElement;
-    
-    renderArea.style.border = "none";
-})
-
-
 // Generate new test entity
 window.menuItemFunctionality.onCreateTestEntity(() => {
     generateTestEntity();
 })
 
-
 // Reset current diagram
 window.menuItemFunctionality.onResetDiagram(() => {
     resetDiagram();
+})
+
+// Show render area
+window.menuItemFunctionality.onShowRenderArea(() => {
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    renderArea.style.border = DiagramAreaDetail.RenderAreaBorder;
+})
+
+// Hide render area
+window.menuItemFunctionality.onHideRenderArea(() => {
+    const renderArea = document.getElementById("render-area") as HTMLDivElement;
+    renderArea.style.border = "none";
+})
+
+// Show details
+window.menuItemFunctionality.onShowDetails(() => {
+    const detailArea = document.getElementById("detail-area") as HTMLDivElement;
+    const table = detailArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "table";
+})
+
+// Hide details
+window.menuItemFunctionality.onHideDetails(() => {
+    const detailArea = document.getElementById("detail-area") as HTMLDivElement;
+    const table = detailArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "none";
+})
+
+// Show relationships
+window.menuItemFunctionality.onShowRelationships(() => {
+    const relationshipArea = document.getElementById("relationship-area") as HTMLDivElement;
+    const table = relationshipArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "table";
+})
+
+// Hide relationships
+window.menuItemFunctionality.onHideRelationships(() => {
+    const relationshipArea = document.getElementById("relationship-area") as HTMLDivElement;
+    const table = relationshipArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "none";
 })
 
 
