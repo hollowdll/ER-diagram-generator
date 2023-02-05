@@ -166,7 +166,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
               label: "Show Details",
               click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("diagram-options:show-detail-area");
+                  focusedWindow.webContents.send("diagram-options:show-details");
                 }
               }
             },
@@ -174,11 +174,27 @@ export const createMainWindowMenu = (): Electron.Menu => {
               label: "Hide Details",
               click: (_menuItem, focusedWindow) => {
                 if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("diagram-options:hide-detail-area");
+                  focusedWindow.webContents.send("diagram-options:hide-details");
                 }
               }
             },
             { type: 'separator' },
+            {
+              label: "Show Relationships",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:show-relationships");
+                }
+              }
+            },
+            {
+              label: "Hide Relationships",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("diagram-options:hide-relationships");
+                }
+              }
+            },
           ]
         },
         {

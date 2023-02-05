@@ -280,6 +280,16 @@ window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
     openJSONFileAndGenerateDiagram();
 })
 
+// Generate new test entity
+window.menuItemFunctionality.onCreateTestEntity(() => {
+    generateTestEntity();
+})
+
+// Reset current diagram
+window.menuItemFunctionality.onResetDiagram(() => {
+    resetDiagram();
+})
+
 // Show render area
 window.menuItemFunctionality.onShowRenderArea(() => {
     const renderArea = document.getElementById("render-area") as HTMLDivElement;
@@ -292,28 +302,32 @@ window.menuItemFunctionality.onHideRenderArea(() => {
     renderArea.style.border = "none";
 })
 
-// Show detail area
-window.menuItemFunctionality.onShowDetailArea(() => {
+// Show details
+window.menuItemFunctionality.onShowDetails(() => {
     const detailArea = document.getElementById("detail-area") as HTMLDivElement;
     const table = detailArea.querySelector(".sidebar-table") as HTMLTableElement;
     table.style.display = "table";
 })
 
-// Hide detail area
-window.menuItemFunctionality.onHideDetailArea(() => {
+// Hide details
+window.menuItemFunctionality.onHideDetails(() => {
     const detailArea = document.getElementById("detail-area") as HTMLDivElement;
     const table = detailArea.querySelector(".sidebar-table") as HTMLTableElement;
     table.style.display = "none";
 })
 
-// Generate new test entity
-window.menuItemFunctionality.onCreateTestEntity(() => {
-    generateTestEntity();
+// Show relationships
+window.menuItemFunctionality.onShowRelationships(() => {
+    const relationshipArea = document.getElementById("relationship-area") as HTMLDivElement;
+    const table = relationshipArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "table";
 })
 
-// Reset current diagram
-window.menuItemFunctionality.onResetDiagram(() => {
-    resetDiagram();
+// Hide relationships
+window.menuItemFunctionality.onHideRelationships(() => {
+    const relationshipArea = document.getElementById("relationship-area") as HTMLDivElement;
+    const table = relationshipArea.querySelector(".sidebar-table") as HTMLTableElement;
+    table.style.display = "none";
 })
 
 
