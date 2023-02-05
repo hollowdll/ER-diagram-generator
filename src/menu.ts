@@ -160,6 +160,24 @@ export const createMainWindowMenu = (): Electron.Menu => {
                 }
               }
             },
+            /*
+            {
+              label: "Show Details",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("");
+                }
+              }
+            },
+            {
+              label: "Hide Details",
+              click: (_menuItem, focusedWindow) => {
+                if (focusedWindow !== undefined) {
+                  focusedWindow.webContents.send("");
+                }
+              }
+            },
+            */
           ]
         },
         {
@@ -226,7 +244,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
           }
         },
         {
-          label: "Version 0.2.0"
+          label: "Version 0.2.1"
         }
       ]
     }
