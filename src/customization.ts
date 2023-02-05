@@ -41,7 +41,7 @@ const getColorsToApply = () => {
 }
 
 // Convert rgb color to hex format
-const rgb2hex = (rgb: string) =>
+const rgbToHex = (rgb: string) =>
     `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
         ?.slice(1)
         .map(n => parseInt(n, 10)
@@ -55,27 +55,27 @@ window.diagramCustomization.onSendCurrentColors((_event, colors) => {
     const diagramNameColor = document.getElementById(
         "diagram-name-color"
     ) as HTMLInputElement;
-    diagramNameColor.value = rgb2hex(colors.diagramName);
+    diagramNameColor.value = rgbToHex(colors.diagramName);
 
     const entityNameBackgroundColor = document.getElementById(
         "entity-name-background-color"
     ) as HTMLInputElement;
-    entityNameBackgroundColor.value = rgb2hex(colors.entityNameBackground);
+    entityNameBackgroundColor.value = rgbToHex(colors.entityNameBackground);
 
     const entityBackgroundColor = document.getElementById(
         "entity-background-color"
     ) as HTMLInputElement;
-    entityBackgroundColor.value = rgb2hex(colors.entityBackground);
+    entityBackgroundColor.value = rgbToHex(colors.entityBackground);
 
     const entityNameColor = document.getElementById(
         "entity-name-color"
     ) as HTMLInputElement;
-    entityNameColor.value = rgb2hex(colors.entityName);
+    entityNameColor.value = rgbToHex(colors.entityName);
 
     const entityFieldColor = document.getElementById(
         "entity-field-color"
     ) as HTMLInputElement;
-    entityFieldColor.value = rgb2hex(colors.entityField);
+    entityFieldColor.value = rgbToHex(colors.entityField);
 })
 
 // Apply changes
