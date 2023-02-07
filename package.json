@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/hollowdll/ER-diagram-generator#readme",
   "devDependencies": {
-    "electron": "^22.1.0",
-    "typescript": "^4.9.4"
+    "electron": "^23.0.0",
+    "typescript": "^4.9.5"
   }
 }
