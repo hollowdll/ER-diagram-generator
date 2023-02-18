@@ -1,100 +1,13 @@
-// App main process
-
 import { app, BrowserWindow, ipcMain, nativeTheme, dialog } from "electron";
-import path from "path";
 import { diagramFile } from "./diagram";
-import { createMainWindowMenu } from "./menu";
+import { createMainWindow } from "./window";
 
 // If app is in debug mode
 // CHANGE THIS TO FALSE IN RELEASE MODE.
 export const isAppDebugMode = true;
 
-const createMainWindow = (): BrowserWindow => {
-  const win = new BrowserWindow({
-    title: "Entity Relationship Diagram Generator",
-    width: 800,
-    height: 600,
-    minWidth: 800,
-    minHeight: 600,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      sandbox: true
-    },
-    show: false,
-  });
-
-  win.setMenu(createMainWindowMenu());
-
-  win.once('ready-to-show', () => {
-    win.show()
-  });
-
-  win.loadFile("./src/html/index.html");
-
-  // In development mode
-  if (isAppDebugMode) {
-    win.webContents.openDevTools();
-  }
-
-  return win;
-}
-
-export const createCustomizationWindow = async (mainWindow: BrowserWindow) => {
-  const win = new BrowserWindow({
-    title: "Edit Diagram Colors",
-    width: 300,
-    height: 400,
-    minWidth: 300,
-    minHeight: 400,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      sandbox: true
-    },
-    show: false,
-    parent: mainWindow,
-    modal: true,
-    resizable: false
-  });
-
-  const mainWindowPosition = mainWindow.getPosition();
-
-  win.setPosition(
-    mainWindowPosition[0],
-    mainWindowPosition[1]
-  );
-
-  // No menu in release version
-  // Comment to debug the window
-  win.setMenu(null);
-
-  win.once('ready-to-show', () => {
-    win.show()
-  });
-
-  await win.loadFile("./src/html/customization.html");
-
-  // Get current diagram colors from main window renderer
-  mainWindow.webContents.send("diagram-customization:get-current-colors", win.id);
-}
-
 // Initialize Inter process communication channels
 const initializeIpcChannels = () => {
-  // Toggle between light and dark mode
-  ipcMain.handle('dark-mode:toggle', (_event, theme: string) => {
-    if (theme === "light") {
-      nativeTheme.themeSource = "light";
-    } else if (theme === "dark") {
-      nativeTheme.themeSource = "dark";
-    }
-  })
-
-
-  // Reset to system theme
-  ipcMain.handle('dark-mode:system', () => {
-    nativeTheme.themeSource = 'system';
-  })
-
-
   // Open system dialog and open a JSON file
   ipcMain.handle("system-dialog:open-json-file", async (): Promise<unknown> => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
@@ -135,7 +48,6 @@ const initializeIpcChannels = () => {
     return data;
   })
 
-
   // Change diagram colors
   ipcMain.handle("diagram-customization:apply-colors", (
     _event, colors: DiagramItemColors
@@ -146,7 +58,6 @@ const initializeIpcChannels = () => {
       mainWindow.webContents.send("diagram-customization:apply-colors", colors);
     }
   })
-
 
   // Messages sent from renderer as reply
 
@@ -161,7 +72,6 @@ const initializeIpcChannels = () => {
     }
   })
 }
-
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -193,5 +103,3 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
-

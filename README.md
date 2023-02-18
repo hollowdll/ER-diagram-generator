@@ -158,6 +158,6 @@ You will get a window where you can change the colors
 
 This project is in early development.
 
-**Current version is 0.3.2**
+**Current version is 0.3.3**
 
 [NodeJS_download]: https://nodejs.org/en/

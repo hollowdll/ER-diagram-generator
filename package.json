@@ -1,7 +1,7 @@
 {
   "name": "er-diagram-generator",
   "productName": "ER-diagram-generator",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Generate Entity Relationship Diagrams by giving the application instructions in a JSON file",
   "main": "dist/main.js",
   "scripts": {
