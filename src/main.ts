@@ -1,5 +1,3 @@
-// App main process
-
 import { app, BrowserWindow, ipcMain, nativeTheme, dialog } from "electron";
 import path from "path";
 import { diagramFile } from "./diagram";
@@ -143,7 +141,6 @@ const initializeIpcChannels = () => {
     }
   })
 }
-
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

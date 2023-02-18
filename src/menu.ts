@@ -1,7 +1,8 @@
 // This file contains native menus for application windows
 
-import { app, Menu, shell, nativeTheme } from "electron";
+import { app, Menu, shell } from "electron";
 import { isAppDebugMode, createCustomizationWindow } from "./main";
+import toggleDarkMode from "./dark-mode";
 
 // Create menu for main window
 export const createMainWindowMenu = (): Electron.Menu => {
@@ -224,7 +225,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
               label: "System",
               type: "radio",
               click: () => {
-                nativeTheme.themeSource = "system";
+                toggleDarkMode("system");
               }
             },
             {
@@ -232,14 +233,14 @@ export const createMainWindowMenu = (): Electron.Menu => {
               type: "radio",
               checked: (isAppDebugMode ? true : false),
               click: () => {
-                nativeTheme.themeSource = "dark";
+                toggleDarkMode("dark");
               }
             },
             {
               label: "Light",
               type: "radio",
               click: () => {
-                nativeTheme.themeSource = "light";
+                toggleDarkMode("light");
               }
             }
           ]
