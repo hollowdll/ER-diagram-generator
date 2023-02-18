@@ -2,12 +2,6 @@
 // Renderer process can use these types.
 
 export namespace PreloadProcess {
-    export interface DarkMode {
-        system: () => Promise<void>,
-        toggleDark: () => Promise<void>,
-        toggleLight: () => Promise<void>,
-    }
-    
     export interface SystemDialog {
         openJSONFile: () => Promise<DiagramStructure.Diagram | undefined>,
     }

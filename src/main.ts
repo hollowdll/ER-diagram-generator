@@ -79,20 +79,6 @@ export const createCustomizationWindow = async (mainWindow: BrowserWindow) => {
 
 // Initialize Inter process communication channels
 const initializeIpcChannels = () => {
-  // Toggle between light and dark mode
-  ipcMain.handle('dark-mode:toggle', (_event, theme: string) => {
-    if (theme === "light") {
-      nativeTheme.themeSource = "light";
-    } else if (theme === "dark") {
-      nativeTheme.themeSource = "dark";
-    }
-  })
-
-  // Reset to system theme
-  ipcMain.handle('dark-mode:system', () => {
-    nativeTheme.themeSource = 'system';
-  })
-
   // Open system dialog and open a JSON file
   ipcMain.handle("system-dialog:open-json-file", async (): Promise<unknown> => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
