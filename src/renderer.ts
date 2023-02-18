@@ -170,7 +170,7 @@ const toggleSidebar = (visible: boolean) => {
 
 
 // Reset current diagram
-const resetDiagram = () => {
+const resetDiagram = async () => {
     const renderArea = document.getElementById(
         "render-area"
     ) as HTMLDivElement;
@@ -196,21 +196,22 @@ const resetDiagram = () => {
         console.log(`Removed ${elementCount} diagram ${elementCount === 1 ? "table" : "tables"}.`);
     }
 
-    // Reset diagram name to default
-    diagramName.innerText = DefaultTextValue.DiagramName;
-
     // Remove details
     while (detailTableBody.firstChild) {
         detailTableBody.removeChild(detailTableBody.lastChild as Node);
     }
-
+    
     // Remove relationships
     while (relationshipTableBody.firstChild) {
         relationshipTableBody.removeChild(relationshipTableBody.lastChild as Node);
     }
-
+    
     // Hide sidebar
     toggleSidebar(false);
+
+    // Reset diagram name to default
+    diagramName.innerText = DefaultTextValue.DiagramName;
+    diagramName.style.color = "";
 }
 
 

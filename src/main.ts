@@ -88,12 +88,10 @@ const initializeIpcChannels = () => {
     }
   })
 
-
   // Reset to system theme
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system';
   })
-
 
   // Open system dialog and open a JSON file
   ipcMain.handle("system-dialog:open-json-file", async (): Promise<unknown> => {
@@ -135,7 +133,6 @@ const initializeIpcChannels = () => {
     return data;
   })
 
-
   // Change diagram colors
   ipcMain.handle("diagram-customization:apply-colors", (
     _event, colors: DiagramItemColors
@@ -146,7 +143,6 @@ const initializeIpcChannels = () => {
       mainWindow.webContents.send("diagram-customization:apply-colors", colors);
     }
   })
-
 
   // Messages sent from renderer as reply
 

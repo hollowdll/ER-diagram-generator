@@ -7,13 +7,12 @@ import { contextBridge, ipcRenderer } from "electron";
 contextBridge.exposeInMainWorld("darkMode", {
   system: () => ipcRenderer.invoke("dark-mode:system"),
   toggleDark: () => ipcRenderer.invoke("dark-mode:toggle", "dark"),
-  toggleLight: () => ipcRenderer.invoke("dark-mode:toggle", "light")
+  toggleLight: () => ipcRenderer.invoke("dark-mode:toggle", "light"),
 })
 
 // Dialog for opening and saving files
 contextBridge.exposeInMainWorld("systemDialog", {
   openJSONFile: () => ipcRenderer.invoke("system-dialog:open-json-file"),
-
 })
 
 // Events that get triggered when menu items are clicked
