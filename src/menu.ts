@@ -1,7 +1,8 @@
 // This file contains native menus for application windows
 
 import { app, Menu, shell } from "electron";
-import { isAppDebugMode, createCustomizationWindow } from "./main";
+import { isAppDebugMode } from "./main";
+import { createCustomizationWindow } from "./window";
 import toggleDarkMode from "./dark-mode";
 
 // Create menu for main window
