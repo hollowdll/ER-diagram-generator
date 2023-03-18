@@ -238,7 +238,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
           }
         },
         {
-          label: "Version 0.3.3"
+          label: "Version 1.0.0"
         }
       ]
     }
