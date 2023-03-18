@@ -107,32 +107,7 @@ export const createMainWindowMenu = (): Electron.Menu => {
                   focusedWindow.webContents.send("create-new-diagram:generate-from-json");
                 }
               }
-            },
-            /* NO IMPLEMENTATION YET
-            {
-              label: "Use Editor",
-
             }
-            */
-          ]
-        },
-        {
-          label: "Create New Entity",
-          submenu: [
-            {
-              label: "Test Entity",
-              click: (_menuItem, focusedWindow) => {
-                if (focusedWindow !== undefined) {
-                  focusedWindow.webContents.send("create-new-entity:test-entity");
-                }
-              }
-            },
-            /* NO IMPLEMENTATION YET
-            {
-              label: "Use Editor",
-            
-            }
-            */
           ]
         },
         {
