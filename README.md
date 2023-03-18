@@ -4,9 +4,19 @@ Generate Entity Relationship Diagrams by giving the application instructions in 
 
 This project is a cross-platform desktop application made with electron framework and TypeScript.
 
+This app is designed to be used as a tool for developers.
+
+Main use cases:
+- Create entity relationship diagrams as code ([in JSON format](#json-file-structure))
+- Design entity relationship diagrams
+- Design the structure of your database
+- Visualize and design entities
+
 > **Note**
 > 
 > Development focuses on Windows systems. Therefore the application might function differently on MacOS and Linux.
+
+**Current version is 0.3.3**
 
 # Tools and tech
 - Electron framework
@@ -19,6 +29,8 @@ This project is a cross-platform desktop application made with electron framewor
 To build this project, you need NodeJS on your system (LTS version recommended). NodeJS is a JavaScript runtime. [You can download it here.][NodeJS_download]
 
 Next clone this repository and open your terminal.
+
+With npm:
 
 Install dependencies in the project root where `package.json` is
 ```
@@ -36,7 +48,7 @@ You can switch between light and dark mode in `Settings` > `Theme Color.`
 
 ![Theme Color](./documentation/images/theme_color.JPG?raw=true)
 
-In `Diagram` > `Create New Diagram` you can generate a diagram from JSON file. This will open a file explorer on your system.
+In `Diagram` > `Create New Diagram` you can generate a diagram from a JSON file. This will open a file explorer on your system.
 
 > **Note**
 > 
@@ -143,8 +155,6 @@ Here are how examples in `diagram_files` folder look like in the app after they 
 
 # Customization
 
-**New feature!**
-
 To customize your diagram colors, open the editor in `Customization` > `Edit Diagram Colors`
 
 ![customization](./documentation/images/customization.JPG?raw=true)
@@ -154,10 +164,5 @@ You will get a window where you can change the colors
 ![customization window](./documentation/images/customization_window.JPG?raw=true)
 
 
-# Development
-
-This project is in early development.
-
-**Current version is 0.3.3**
 
 [NodeJS_download]: https://nodejs.org/en/
