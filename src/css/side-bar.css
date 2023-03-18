@@ -38,8 +38,13 @@
 .sidebar-table-tr > td {
     width: 50%;
     text-align: center;
+    word-break: break-word;
+    /* border-top: 1px solid white; */
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .sidebar-table-tr > th {
-    padding: 15px
+    padding: 15px;
+    font-size: 1.25rem;
 }

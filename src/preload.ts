@@ -10,9 +10,6 @@ contextBridge.exposeInMainWorld("systemDialog", {
 
 // Events that get triggered when menu items are clicked
 contextBridge.exposeInMainWorld("menuItemFunctionality", {
-  onCreateTestEntity: (callback: () => void) => ipcRenderer.on(
-    "create-new-entity:test-entity", callback
-  ),
   onCreateDiagramFromJSON: (callback: () => void) => ipcRenderer.on(
     "create-new-diagram:generate-from-json", callback
   ),
