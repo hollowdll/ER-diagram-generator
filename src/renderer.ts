@@ -23,7 +23,6 @@ namespace EntityDiagramTypes {
 }
 
 
-
 // Generate diagram entity name row
 const generateDiagramEntityNameRow = (name: string): string => {
   const row = `
@@ -40,9 +39,12 @@ const generateDiagramEntityNameRow = (name: string): string => {
 
 
 // Generate diagram entity field row
-const generateDiagramEntityFieldRow =
-  (keyType: string, name: string, dataType: string, required: string): string => {
-
+const generateDiagramEntityFieldRow = (
+  keyType: string,
+  name: string,
+  dataType: string,
+  required: string
+): string => {
     if (keyType !== "PK" && keyType !== "FK") keyType = "";
 
     const row = `
@@ -58,26 +60,6 @@ const generateDiagramEntityFieldRow =
     // console.log(row);
 
     return row;
-  }
-
-
-// Generate test entity that will be rendered
-const generateTestEntity = () => {
-  // Make diagram entities with HTML table elements
-
-  // Table holder
-  const holder = document.createElement("table");
-  holder.className = "diagram-entity";
-
-  const nameRow = generateDiagramEntityNameRow("Person");
-  const fieldRow1 = generateDiagramEntityFieldRow("PK", "person_id", "serial", "NN");
-  const fieldRow2 = generateDiagramEntityFieldRow("", "name", "text", "NN");
-  const fieldRow3 = generateDiagramEntityFieldRow("", "age", "integer", "NN");
-
-  holder.innerHTML += nameRow + fieldRow1 + fieldRow2 + fieldRow3;
-
-  const renderArea = document.getElementById("render-area") as HTMLDivElement;
-  renderArea.appendChild(holder);
 }
 
 
@@ -278,11 +260,6 @@ const openJSONFileAndGenerateDiagram = async () => {
 // Generate Diagram from JSON
 window.menuItemFunctionality.onCreateDiagramFromJSON(() => {
   openJSONFileAndGenerateDiagram();
-})
-
-// Generate new test entity
-window.menuItemFunctionality.onCreateTestEntity(() => {
-  generateTestEntity();
 })
 
 // Reset current diagram

@@ -7,7 +7,6 @@ export namespace PreloadProcess {
   }
 
   export interface MenuItemFunctionality {
-    onCreateTestEntity: (callback: () => void) => void,
     onCreateDiagramFromJSON: (callback: () => void) => void,
     onResetDiagram: (callback: () => void) => void,
     onShowRenderArea: (callback: () => void) => void,
