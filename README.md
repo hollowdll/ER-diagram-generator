@@ -152,6 +152,10 @@ Here are how examples in `diagram_files` folder look like in the app after they 
 
 ![structure.json in light mode](./documentation/images/structure_light.JPG?raw=true)
 
+`relationship-example.json` in dark mode:
+
+![relationship-example.json in dark mode](./documentation/images/relationship-example.JPG?raw=true)
+
 
 # Customization
 

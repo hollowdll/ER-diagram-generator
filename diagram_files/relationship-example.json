@@ -1,0 +1,77 @@
+{
+    "settings": {
+        "diagramName": "Relationship example",
+        "requiredOptionOutput": "NN"
+    },
+    "details": [
+        {
+            "detail": "NN",
+            "description": "Not Null"
+        },
+        {
+            "detail": "PK",
+            "description": "Primary Key"
+        },
+        {
+            "detail": "FK",
+            "description": "Foreign Key"
+        },
+        {
+            "detail": "serial",
+            "description": "Auto integer"
+        }
+    ],
+    "entities": [
+        {
+            "name": "Person",
+            "fields": [
+                {
+                    "name": "person_id",
+                    "keyType": "PK",
+                    "dataType": "serial",
+                    "required": true
+                },
+                {
+                    "name": "first_name",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "last_name",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                },
+                {
+                    "name": "city_id",
+                    "keyType": "FK",
+                    "dataType": "integer",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "name": "City",
+            "fields": [
+                {
+                    "name": "city_id",
+                    "keyType": "PK",
+                    "dataType": "serial",
+                    "required": true
+                },
+                {
+                    "name": "name",
+                    "keyType": "",
+                    "dataType": "text",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationship": "(FK) (Many) Person.city_id << (PK) (One) City.city_id"
+        }
+    ]
+}
